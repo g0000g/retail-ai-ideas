@@ -1,92 +1,72 @@
-# FRONTEND DESIGN SPECIFICATION — ANGULAR 20 UI ARCHITECTURE
-> **Tài liệu:** Frontend System Architecture, Design Tokens, Demo Switcher & Universal Chat Assistant Spec  
+# FRONTEND DESIGN SPECIFICATION — EXECUTIVE CLIENT DEMO SPECIFICATION
+> **Tài liệu:** Frontend Executive Presentation Design System & Component Spec  
+> **Mục tiêu:** **Demo Trực Tiếp Khách Hàng & Ban Giám Khảo (Executive Pitching & Client Demos)**  
 > **Framework:** **Angular 20** (Standalone Components, Signals API, Zoneless Change Detection)  
-> **Phong cách Thiết kế:** **Modern Enterprise Dark Mode + Glassmorphism UI**  
+> **Phong cách Thiết kế:** **High-End Enterprise Dark Mode, Glassmorphism HSL, Ambient Glow Orbs**  
 > **Ngày cập nhật:** 02 tháng 08, 2026  
 > **Tác giả:** Lead UI/UX & Angular Architect  
 
 ---
 
-## 1. TỔNG QUAN HỆ THỐNG GIAO DIỆN NGUYÊN MẪU (FRONTEND SPEC OVERVIEW)
+## 1. TỔNG QUAN THIẾT KẾ ĐẲNG CẤP CHO KHÁCH HÀNG (EXECUTIVE DEMO OVERVIEW)
 
-Giao diện người dùng của hệ thống **Retail AI Platform (GB10)** được xây dựng 100% trên kiến trúc **Angular 20**, tận dụng tối đa sức mạnh của **Signals API** để quản lý trạng thái phản hồi cực nhanh (Reactive State), loại bỏ phụ thuộc vào `Zone.js` (Zoneless Change Detection) và bổ sung **Demo Switcher Navigation Bar** cùng **Universal AI Chat Copilot Panel**.
+Giao diện nguyên mẫu **Retail AI Platform (GB10)** được thiết kế để mang lại trải nghiệm thị giác **WOW Factor ngay từ giây đầu tiên** khi trình diễn trước Ban Giám Khảo và Đối Tác/Khách Hàng.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────────────┐
-│                               ANGULAR 20 FULL-STACK ARCHITECTURE                         │
+│                             EXECUTIVE CLIENT DEMO ARCHITECTURE                           │
 ├──────────────────────────────────────────────────────────────────────────────────────────┤
-│ • Top Nav Demo Switcher:       Chuyển đổi 1-click giữa 5 Flagship Demos + AI Chat Copilot │
-│ • Universal AI Chat Copilot:   Giao diện Chat tương tác đa năng với Qwen2.5/DeepSeek-R1  │
-│ • Reactive Signals Core:       signal(), computed(), effect(), linkedSignal()           │
-│ • State Management:            Angular 20 Signal Store (No NgRx Boilerplate required)   │
-│ • Style System:                Vanilla CSS Custom Properties (Tokens) + HSL Palette     │
+│ • System Telemetry Bar:        Hiển thị thời gian thực GPU Status, Unified Memory & Latency│
+│ • Ambient Glow Orbs:           Hiệu ứng quầng sáng chuyển đổi theo HSL Palette            │
+│ • Glassmorphism Panels:        `backdrop-filter: blur(20px)` với viền mỏng mờ phát sáng    │
+│ • 1-Click Demo Switcher:       Chuyển đổi giữa 5 Flagship Showcase + AI Chat Copilot      │
+│ • Preset Prompt Chips:         Cho phép bấm 1-click để AI trả về câu trả lời mẫu cho Khách │
 └──────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 2. CHỨC NĂNG DEMO SWITCHER & UNIVERSAL AI CHAT ASSISTANT
-
-### 2.1 Demo Switcher Bar (Thanh Điều Hướng Chuyển Đổi Demo 1-Click)
-Thanh điều hướng cố định trên cùng màn hình cho phép Ban Giám Khảo chuyển đổi tức thì giữa các kịch bản trình diễn:
-1. 🎙️ **Demo 1: Kiosk Giọng Nói Tiếng Việt (V09)** — `PhoWhisper-large` + `Qwen2.5-32B`.
-2. 📅 **Demo 2: Lập Lịch Ca Nhân Viên (V02/V03)** — `Chronos-bolt` + `OR-Tools Java Solver`.
-3. 👗 **Demo 3: Thử Đồ Ảo E-Commerce (C06/C01)** — `ComfyUI CatVTON Node`.
-4. 📄 **Demo 4: Trích Xuất Hóa Đơn VAT (V07/C08)** — `Qwen2.5-VL-72B`.
-5. 🌐 **Demo 5: ACP Gateway Tác Nhân (W03/I05)** — Cổng Agentic Commerce.
-6. 💬 **Demo 6: Universal Retail AI Chat Copilot** — Trợ lý Chat siêu thị đa năng.
-
----
-
-### 2.2 Universal Retail AI Chat Copilot Panel (`chat-copilot`)
-Giao diện khung Chat thời gian thực kết nối với `Qwen2.5-32B` / `DeepSeek-R1-70B` trên GB10:
-* **Hỗ trợ hội thoại đa lượt (Multi-turn chat history):** Lưu mảng tin nhắn qua `chatMessages = signal<ChatMessage[]>([])`.
-* **Trích xuất ý định tự động:** Khi người dùng chat *"Tìm sữa Vinamilk có khuyến mãi gì?"*, backend Spring Boot 4.1 tự gọi vLLM và trả về phản hồi theo thời gian thực.
-
-```typescript
-// Signal State trong Angular 20
-activeDemo = signal<DemoView>('voice-kiosk');
-chatMessages = signal<ChatMessage[]>([
-  { sender: 'assistant', text: 'Xin chào! Tôi là Trợ lý AI Bán Lẻ chạy trực tiếp trên máy chủ GB10.', timestamp: new Date() }
-]);
-
-sendChatMessage() {
-  const text = this.userChatInput;
-  this.chatMessages.update(msgs => [...msgs, { sender: 'user', text, timestamp: new Date() }]);
-  // Gọi Spring Boot 4.1.0 API...
-}
-```
-
----
-
-## 3. THƯ MỤC CẤU TRÚC COMPONENT DỰ ÁN ANGULAR 20
-
-```
-frontend-angular20/src/app/
-├── core/
-│   ├── services/
-│   │   ├── voice-kiosk.service.ts       # Kết nối Spring Boot 4.1 Voice API
-│   │   ├── staff-scheduler.service.ts   # Kết nối OR-Tools Solver Service
-│   │   ├── document-ai.service.ts       # Upload & trích xuất hóa đơn Qwen2.5-VL
-│   │   └── comfyui.service.ts           # Gọi ComfyUI CatVTON & LivePortrait Workflows
-│   └── stores/
-│       └── ai-session.store.ts          # Central Signal Store quản lý trạng thái AI
-└── app.component.ts                     # Main Layout bao gồm Demo Switcher & Universal Chat
-```
-
----
-
-## 4. DESIGN TOKENS & HỆ THỐNG MÀU SẮC (GLASSMORPHISM DESIGN SYSTEM)
+## 2. DESIGN TOKENS & HỆ THỐNG MÀU SẮC DÀNH CHO DEMO KHÁCH HÀNG
 
 ```css
 :root {
-  --bg-app: hsl(222, 47%, 11%);          /* #0f172a Slate 900 */
-  --bg-card: hsla(217, 33%, 17%, 0.7);    /* #1e293b Slate 800 (70% Opacity) */
-  --primary-accent: hsl(199, 89%, 48%);  /* #0284c7 Sky Blue */
-  --purple-accent: hsl(271, 91%, 65%);   /* #a855f7 Vivid Purple */
-  --gradient-brand: linear-gradient(135deg, var(--primary-accent), var(--purple-accent));
+  /* Surface & Backgrounds */
+  --bg-app: #090d16;                       /* Ultra Deep Slate */
+  --bg-card: rgba(15, 23, 42, 0.75);       /* Slate 900 Glass 75% Opacity */
+  --bg-inner: rgba(30, 41, 59, 0.6);       /* Slate 800 Glass 60% Opacity */
+
+  /* Primary Brand Gradients */
+  --gradient-brand: linear-gradient(135deg, #0284c7, #a855f7);
+  --gradient-recording: linear-gradient(135deg, #dc2626, #ef4444);
+
+  /* Highlights & Badges */
+  --color-green-online: #4ade80;            /* Emerald Online Status */
+  --color-sky-latency: #38bdf8;             /* Sky Blue Latency Highlight */
+  --color-purple-accent: #a855f7;           /* Vivid Purple Glow */
+
+  /* Glassmorphism Effects */
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(20px);
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 ```
 
 ---
-*(Hết văn bản thiết kế Frontend Angular 20 - Sẵn sàng khởi chạy giao diện)*
+
+## 3. DANH SÁCH 6 SHOWCASE DÀNH CHO DEMO KHÁCH HÀNG
+
+1. **🎙️ Showcase 1: Kiosk Giọng Nói Tiếng Việt (PhoWhisper-large)**
+   * *Điểm nhấn demo:* Nút Push-to-Talk phát sáng pulsing red khi thu âm, hiển thị sóng âm Audio Waveform và Card kết quả vị trí quầy/kệ hàng + Khuyến mãi.
+2. **📅 Showcase 2: Lập Lịch Ca Nhân Viên & Dự Báo (Chronos + OR-Tools)**
+   * *Điểm nhấn demo:* Trích xuất đơn nghỉ phép tự do bằng DeepSeek-R1 + Bảng phân lịch tuần tuân thủ 100% Luật Lao Động được giải trong 8.4s.
+3. **👗 Showcase 3: Thử Đồ Ảo E-Commerce (ComfyUI CatVTON Engine)**
+   * *Điểm nhấn demo:* So sánh ảnh Khách hàng + Trang phục mẫu -> Trạng thái Render mượt mà từ ComfyUI GPU Worker.
+4. **📄 Showcase 4: Copilot Trích Xuất Chứng Từ VAT (Qwen2.5-VL-72B)**
+   * *Điểm nhấn demo:* Bảng đối soát 3 bên (Hóa đơn - PO - Phiếu nhập kho GRN) với các biểu tượng Khớp Tuyệt Đối 🟢.
+5. **🌐 Showcase 5: Cổng Tác Nhân Mua Sắm ACP Gateway (Spring Boot 4.1)**
+   * *Điểm nhấn demo:* Trình diễn cổng API Gateway chuẩn ACP/UCP 2026 cho các AI Agent cá nhân.
+6. **💬 Showcase 6: Universal Retail AI Chat Copilot**
+   * *Điểm nhấn demo:* Khung Chat thời gian thực kèm các Prompt Chips bấm 1-click cho Khách hàng trải nghiệm không cần gõ phím.
+
+---
+*(Hết văn bản thiết kế Executive Demo — Sẵn sàng trình diễn)*
