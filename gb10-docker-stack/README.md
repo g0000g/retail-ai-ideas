@@ -8,7 +8,7 @@ Bộ tệp cài đặt này được thiết kế theo dạng **One-click Standa
 
 ```
 gb10-docker-stack/
-├── docker-compose.yml          # Cấu hình 6 Container Microservices tập trung
+├── docker-compose.yml          # Cấu hình 7 Container Microservices tập trung
 ├── .env                        # Biến môi trường hệ thống & HF Token
 ├── setup-gb10.sh               # Script cài đặt & khởi chạy 1-click cho Linux
 ├── phowhisper-sidecar/         # Service ASR PhoWhisper-large (Python FastAPI + CUDA)
@@ -56,6 +56,7 @@ chmod +x setup-gb10.sh
 | :--- | :--- | :--- |
 | **Frontend Web UI** | `http://<GB10-IP>:80` | Giao diện Angular 20 trải nghiệm Kiosk giọng nói & Dashboard |
 | **Backend API** | `http://<GB10-IP>:8080` | Enterprise Backend Spring Boot 4.1.0 (Virtual Threads) |
+| **Attu Milvus GUI**| `http://<GB10-IP>:8001` | Giao diện Web GUI quản lý Milvus Vector DB (Thay thế DBeaver) |
 | **vLLM AI Engine** | `http://<GB10-IP>:8000` | Serving LLM Qwen2.5 / DeepSeek-R1 qua OpenAI API |
 | **PhoWhisper ASR** | `http://<GB10-IP>:8090` | Service ASR giọng nói tiếng Việt VinAI PhoWhisper-large |
 | **ComfyUI Engine** | `http://<GB10-IP>:8188` | Headless Engine thử đồ ảo CatVTON & Video người ảo LivePortrait |

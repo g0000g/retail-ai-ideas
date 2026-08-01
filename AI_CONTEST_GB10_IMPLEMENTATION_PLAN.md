@@ -2,6 +2,8 @@
 > **Tài liệu:** Comprehensive AI Contest Idea Portfolio & Enterprise Implementation Blueprint  
 > **Backend Framework:** **Spring Boot 4.1.0** (Spring Framework 7.0.8, Java 21/23 LTS, Spring AI)  
 > **Frontend Framework:** **Angular 20** (Standalone Components, Signals API, Zoneless Change Detection)  
+> **Vector DB Management:** **Attu Web GUI** (`zilliz/attu:v2.4.0` Port 8001 - Thay thế DBeaver) + **Milvus Java SDK 2.4.2**  
+> **Generative Engine:** **ComfyUI Headless Engine** (Port 8188 - CatVTON & LivePortrait Workflows)  
 > **Phần cứng mục tiêu:** Máy chủ NVIDIA GB10 (Grace Blackwell Architecture - Unified Memory Subsystem)  
 > **Phạm vi tập trung:** **100% Giải pháp Phần mềm, Web/Mobile, Multi-modal, Document AI, CCTV Vision & Data** (Loại bỏ các ý tưởng yêu cầu thiết bị Robot vật lý).  
 > **Ngày cập nhật:** 02 tháng 08, 2026  
@@ -62,11 +64,32 @@ Chúng tôi đã **loại bỏ 100% các ý tưởng phụ thuộc vào phần c
 
 ---
 
-## 3. ARCHITECTURE BLUEPRINT: BACKEND SPRING BOOT 4.1 & FRONTEND ANGULAR 20
+## 3. GIẢI PHÁP TƯƠNG TÁC MILVUS VECTOR DATABASE & CÔNG CỤ QUẢN LÝ DỮ LIỆU
+
+### 3.1 DBeaver vs. Attu Web GUI — Tại Sao Cần Dùng Attu GUI Cho Milvus?
+DBeaver là công cụ quản lý CSDL quan hệ (SQL) qua giao thức JDBC. Do Milvus là **Vector Database sử dụng giao thức gRPC/REST chuyên biệt** để quản lý các mảng vector cao chiều và các chỉ mục HNSW/IVF_FLAT, DBeaver không thể kết nối trực tiếp.
+
+Do đó, hệ thống tích hợp **Attu Web GUI (`zilliz/attu:v2.4.0`)** đóng vai trò **y hệt như DBeaver** nhưng dành riêng cho Milvus:
+* **Địa chỉ truy cập Web GUI:** `http://<GB10-IP>:8001`
+* **Tính năng:** Xem danh sách Collections, xem thuộc tính Schema, kiểm tra các chỉ mục HNSW/IVF_FLAT, và trực tiếp chạy thử truy vấn tìm kiếm sản phẩm tương đồng theo vector trên giao diện web.
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│                            HỆ THỐNG GIAO TIẾP MILVUS VECTOR DB                           │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ 1. Trực quan hóa & Quản lý (GUI):  Attu Web Client (Port 8001 - Thay thế DBeaver)       │
+│ 2. Lập trình Backend (Code):       Milvus Java SDK 2.4.2 (Spring Boot 4.1.0)            │
+│ 3. Scripting & Data Science:       PyMilvus (Python Client)                              │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-### 3.1 CẤU HÌNH BACKEND SPRING BOOT 4.1.0 (JAVA 21 / SPRING AI)
+## 4. ARCHITECTURE BLUEPRINT: BACKEND SPRING BOOT 4.1 & FRONTEND ANGULAR 20
+
+---
+
+### 4.1 CẤU HÌNH BACKEND SPRING BOOT 4.1.0 (JAVA 21 / SPRING AI)
 
 #### A. Tệp Maven `pom.xml` Chuẩn Spring Boot 4.1.0
 
@@ -154,95 +177,13 @@ Chúng tôi đã **loại bỏ 100% các ý tưởng phụ thuộc vào phần c
 </project>
 ```
 
-#### B. Spring Boot 4.1 Service (Voice Kiosk Controller & Spring AI Integration)
-
-```java
-// src/main/java/com/retail/ai/kiosk/VoiceKioskService.java
-package com.retail.ai.kiosk;
-
-import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.chat.messages.SystemMessage;
-import org.springframework.ai.chat.messages.UserMessage;
-import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-
-import java.util.List;
-
-@Service
-public class VoiceKioskService {
-
-    private final ChatModel chatModel;
-    private final WebClient gb10AsrClient;
-
-    public VoiceKioskService(ChatModel chatModel, WebClient.Builder webClientBuilder) {
-        this.chatModel = chatModel;
-        this.gb10AsrClient = webClientBuilder.baseUrl("http://103.108.136.158:8090").build();
-    }
-
-    public String transcribeAudio(byte[] audioBytes) {
-        return gb10AsrClient.post()
-                .uri("/asr/phowhisper")
-                .bodyValue(audioBytes)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
-    }
-
-    public String processRetailIntent(String userUtterance) {
-        var systemMessage = new SystemMessage("""
-            Bạn là Trợ lý Kiosk Siêu thị. Phân tích câu nói của khách hàng và trả về JSON:
-            {"intent": "FIND_PRODUCT" | "CHECK_STOCK" | "PROMOTION", "sku_keyword": "tên sản phẩm"}
-            """);
-        var userMessage = new UserMessage(userUtterance);
-        
-        var response = chatModel.call(new Prompt(List.of(systemMessage, userMessage)));
-        return response.getResult().getOutput().getContent();
-    }
-}
-```
-
 ---
 
-### 3.2 CẤU HÌNH FRONTEND ANGULAR 20 (STANDALONE COMPONENTS & SIGNALS)
+### 4.2 CẤU HÌNH FRONTEND ANGULAR 20 (STANDALONE COMPONENTS & SIGNALS)
 
-#### A. Tệp `package.json` Chuẩn Angular 20
-
-```json
-{
-  "name": "gb10-retail-ai-angular20-ui",
-  "version": "1.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build"
-  },
-  "dependencies": {
-    "@angular/animations": "^20.0.0",
-    "@angular/common": "^20.0.0",
-    "@angular/compiler": "^20.0.0",
-    "@angular/core": "^20.0.0",
-    "@angular/forms": "^20.0.0",
-    "@angular/platform-browser": "^20.0.0",
-    "@angular/platform-browser-dynamic": "^20.0.0",
-    "@angular/router": "^20.0.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.6.0",
-    "zone.js": "~0.15.0"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^20.0.0",
-    "@angular/cli": "^20.0.0",
-    "@angular/compiler-cli": "^20.0.0",
-    "typescript": "~5.5.0"
-  }
-}
-```
-
-#### B. Component Angular 20 Standalone (`voice-kiosk.component.ts` dùng Signals API)
+#### A. Component Angular 20 Standalone (`voice-kiosk.component.ts` dùng Signals API)
 
 ```typescript
-// src/app/components/voice-kiosk/voice-kiosk.component.ts
 import { Component, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -280,83 +221,71 @@ import { HttpClient } from '@angular/common/http';
         </button>
       </footer>
     </div>
-  `,
-  styles: [`
-    .glassmorphism {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      border-radius: 16px;
-      padding: 24px;
-      color: #fff;
-    }
-    .btn-mic {
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      border: none;
-      padding: 16px 32px;
-      border-radius: 50px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
-  `]
+  `
 })
 export class VoiceKioskComponent {
   private http = inject(HttpClient);
 
-  // Angular 20 Reactive Signals State
   isRecording = signal<boolean>(false);
   transcript = signal<string>('');
   aiResult = signal<any>(null);
 
   toggleRecording() {
     this.isRecording.update(state => !state);
-    if (!this.isRecording()) {
-      this.sendVoiceToBackend();
-    }
-  }
-
-  sendVoiceToBackend() {
-    this.transcript.set('Đang xử lý âm thanh tiếng Việt bằng PhoWhisper-large...');
-    
-    // Gọi Backend Spring Boot 4.1 API
-    this.http.post<any>('http://localhost:8080/api/v1/kiosk/process-voice', {}).subscribe({
-      next: (res) => {
-        this.transcript.set(res.transcribed_text);
-        this.aiResult.set(res.intent_data);
-      },
-      error: (err) => {
-        this.transcript.set('Có lỗi xảy ra khi kết nối máy chủ GB10.');
-      }
-    });
   }
 }
 ```
 
 ---
 
-## 4. CHI TIẾT BẢNG MÔ HÌNH VÀ THƯ VIỆN CHO TẤT CẢ Ý TƯỞNG PHẦN MỀM CÒN LẠI
+## 5. DOCKER STACK VẬN HÀNH TRÊN MÁY CHỦ GB10
 
-| Mã | Tên Ý Tưởng | Local SOTA Model Đề Xuất | Backend Spring Boot 4.1 | Frontend Angular 20 |
-| :--- | :--- | :--- | :--- | :--- |
-| **V01** | Scan & Go Super-App | Mobile Barcode + POS Sync | Spring Boot REST + WebSocket | Angular 20 Mobile PWA |
-| **V04/W06**| Giám Sát Cửa Hàng CCTV | RT-DETRv2 + ByteTrack | Spring WebFlux RTSP Stream | Angular 20 Dashboard |
-| **V05** | Localized Personalization | bge-m3 + LightFM | Milvus Java SDK (`milvus-sdk-java`)| Angular 20 POS Card |
-| **V08** | ERP Reconciliation | Qwen2.5-32B + DuckDB Java | Spring Batch + JDBC | Angular 20 Table View |
-| **C02** | Private Domain SCRM Agent | Qwen-Agent + WxJava | WxJava SDK (`weixin-java-cp`) | Angular 20 Admin Panel |
-| **C05** | Zero-Shot SKU Recognition | PP-ShiTuV2 + Milvus DB | Milvus Java SDK + Spring Web | Angular 20 Search UI |
-| **W01** | EU AI Act Compliance Layer | Decision Audit Postgres | Spring Data JPA + Actuator | Angular 20 FRIA Report |
-| **W02** | Accessibility Remediation | Axe-core + Qwen2.5-Coder-32B | Java Exec Process + Git SDK | Angular 20 PR Refactor |
-| **W03/I05**| Agentic Commerce Gateway | bge-m3 + Qwen2.5-72B | Spring Boot ACP Gateway | Angular 20 ACP Portal |
+```yaml
+version: '3.8'
+
+services:
+  vllm-core:
+    image: vllm/vllm-openai:latest
+    ports: ["8000:8000"]
+
+  phowhisper-asr:
+    build: ./phowhisper-sidecar
+    ports: ["8090:8090"]
+
+  comfyui-engine:
+    image: yanweiliu/comfyui:latest
+    ports: ["8188:8188"]
+
+  milvus-vectordb:
+    image: milvusdb/milvus:v2.4.0-standalone
+    ports: ["19530:19530"]
+
+  # Attu Web GUI - Công cụ quản lý Milvus trực quan thay thế DBeaver
+  attu-gui:
+    image: zilliz/attu:v2.4.0
+    ports: ["8001:3000"]
+    environment:
+      - MILVUS_URL=milvus-vectordb:19530
+    depends_on:
+      - milvus-vectordb
+
+  backend-spring-boot:
+    build: ./backend-spring-boot
+    ports: ["8080:8080"]
+
+  frontend-angular20:
+    build: ./frontend-angular20
+    ports: ["80:80"]
+```
 
 ---
 
-## 5. LỘ TRÌNH TRIỂN KHAI DỰ ÁN FULL-STACK (ROADMAP — 18 NGÀY)
+## 6. LỘ TRÌNH TRIỂN KHAI DỰ ÁN FULL-STACK (ROADMAP — 18 NGÀY)
 
-1. **Giai đoạn 1 (Ngày 1 - 3):** Khởi tạo Spring Boot 4.1.0 Backend & Angular 20 Standalone Frontend (với Signals API). Thiết lập connection test vLLM GB10.
+1. **Giai đoạn 1 (Ngày 1 - 3):** Khởi tạo Spring Boot 4.1.0 Backend & Angular 20 Standalone Frontend (với Signals API). Khởi chạy Docker Stack bao gồm Attu Web GUI (`8001`) kết nối Milvus DB.
 2. **Giai đoạn 2 (Ngày 4 - 8):** Phát triển 5 Core Services & Angular Components cho 5 Flagship POCs (Voice Kiosk, Staff Scheduler, Document AI, Livestream Generator, ACP Gateway).
 3. **Giai đoạn 3 (Ngày 9 - 14):** Đóng gói Docker Compose (Spring Boot 4.1 + Angular 20 NGINX + GB10 vLLM), quay video demo tương tác thực tế.
 4. **Giai đoạn 4 (Ngày 15 - 18):** Hoàn thiện Slide Pitching, Báo cáo ROI Chi Tiết và Hồ sơ Dự thi AI Contest.
 
 ---
-*(Hết văn bản kế hoạch Full-stack - Sẵn sàng khởi tạo mã nguồn)*
+*(Hết văn bản kế hoạch - Sẵn sàng khởi tạo mã nguồn)*

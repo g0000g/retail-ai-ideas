@@ -1,6 +1,6 @@
 # =================================================================
 # DOCKER COMPOSE CONFIGURATION FOR GB10 AI SERVER
-# Stack: vLLM (Qwen2.5/DeepSeek) + PhoWhisper + ComfyUI + Milvus +
+# Stack: vLLM (Qwen2.5/DeepSeek) + PhoWhisper + ComfyUI + Milvus + Attu GUI +
 #        Spring Boot 4.1.0 (Java 21) + Angular 20 (NGINX)
 # =================================================================
 version: '3.8'
@@ -104,7 +104,19 @@ services:
       - milvus-etcd
       - milvus-minio
 
-  # 5. Backend Spring Boot 4.1.0 Master Application (Java 21)
+  # 5. Attu Web GUI Client (Thay thế DBeaver cho Vector DB Management)
+  attu-gui:
+    image: zilliz/attu:v2.4.0
+    container_name: gb10-attu-gui
+    restart: always
+    ports:
+      - "8001:3000"
+    environment:
+      - MILVUS_URL=milvus-vectordb:19530
+    depends_on:
+      - milvus-vectordb
+
+  # 6. Backend Spring Boot 4.1.0 Master Application (Java 21)
   backend-spring-boot:
     build:
       context: ./backend-spring-boot
@@ -124,7 +136,7 @@ services:
       - phowhisper-asr
       - milvus-vectordb
 
-  # 6. Frontend Angular 20 Web UI (NGINX Web Server)
+  # 7. Frontend Angular 20 Web UI (NGINX Web Server)
   frontend-angular20:
     build:
       context: ./frontend-angular20
