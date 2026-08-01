@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="W06 Fixed Camera">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="W06 — Fixed-camera shelf intelligence: the Bossa Nova lesson, turned into a design" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="&quot;Investment in fixed camera technologies, plus the fast-growing popularity of micro-fulfillment centers, imperils the value proposition of robotic shelf scanning.&quot;" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1600" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="story" value="THE STORY THIS PLAN IS BUILT ON&#xa;&#xa;Walmart deployed Bossa Nova shelf-scanning robots in 500+ STORES&#xa;from 2017, announced expansion to 1,000, then CANCELLED THE&#xa;CONTRACT IN NOVEMBER 2020. Bossa Nova laid off 50% of its staff.&#xa;&#xa;Three years earlier Walmart had called the robots &quot;50% more&#xa;productive and three times faster than a human&quot; at inventory-taking.&#xa;&#xa;ALL THREE STATED REASONS WERE NON-TECHNICAL:&#xa;&#xa;1 · LABOUR SUBSTITUTION FLIPPED THE ROI&#xa;     the pandemic put more workers in aisles picking for delivery,&#xa;     so &quot;they could scan shelves instead of the robots&quot;&#xa;&#xa;2 · CUSTOMER DISCOMFORT&#xa;     Walmart US CEO John Furner worried about &quot;how customers&#xa;     reacted to the large, SIX-FOOT-TALL MACHINES scanning&#xa;     shelves while they shopped&quot;&#xa;&#xa;3 · SIMPLER ALTERNATIVES WON&#xa;     &quot;simple and cost-effective ways to manage shelf products&#xa;     with workers&quot;&#xa;&#xa;WHAT SURVIVED: floor-cleaning robots that also upload inventory&#xa;STAYED in Walmart stores (Brain Corp&#39;s niche), and Schnuck Markets&#xa;EXPANDED Simbe&#39;s Tally to 62 Midwest locations." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="520" height="470" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cmp" value="Robot (R01, China round)   vs   Fixed cameras (W06)" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f9f9f9;strokeColor=#999999;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="90" width="640" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="t900" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="44" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t901" value="ROBOT  (R01, China round)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="44" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t902" value="FIXED CAMERAS  (W06)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="44" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t903" value="coverage" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="74" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t904" value="complete, but only when it passes" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="74" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t905" value="continuous on covered bays, ZERO elsewhere" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="74" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t906" value="frequency" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="104" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t907" value="2–3 scans/day" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="104" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t908" value="CONTINUOUS — a gap in minutes" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="104" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t909" value="customer presence" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="134" width="150" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="t910" value="SIX-FOOT MACHINE IN THE AISLE&#xa;← the stated failure reason" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="134" width="220" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="t911" value="invisible" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="134" width="220" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="t912" value="aisle clearance" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="180" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t913" value="needs ~36 inches" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="180" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t914" value="irrelevant" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="180" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t915" value="cost shape" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="210" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t916" value="$30–50k/store/year (Simbe economics)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="210" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t917" value="capex PER BAY, no subscription" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="210" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t918" value="failure mode" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="240" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t919" value="robot down → NO data at all" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="240" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t920" value="one camera down → one bay blind" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="240" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t921" value="blocked by shoppers" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="270" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t922" value="must wait or re-plan" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="270" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t923" value="occlusion suppression" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="270" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t924" value="low-value aisles" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="300" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t925" value="free — it drives past" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="170" y="300" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="t926" value="COSTS A CAMERA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#cccccc;fontSize=11;align=left;spacingLeft=6;verticalAlign=middle;fontStyle=1;" vertex="1" parent="cmp">
+          <mxGeometry x="390" y="300" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="cm2" value="THE HONEST TRADE-OFF&#xa;Fixed cameras cost PER BAY. Robots cost PER STORE.&#xa;&#xa;→ so the correct design is SELECTIVE: cameras on the bays where&#xa;   out-of-stock costs the most, and NOTHING on the long tail.&#xa;   That is a merchandising decision driven by I03 contribution&#xa;   data — not a technology decision." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="cmp">
+          <mxGeometry x="20" y="344" width="600" height="98" as="geometry" />
+        </mxCell>
+
+        <mxCell id="arch" value="Everything below the camera is ALREADY PLANNED" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="90" width="470" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="a0" value="shelf-edge + ceiling cameras on SELECTED bays&#xa;chosen by lost-sales-per-out-of-stock-hour&#xa;(I03 contribution × V03 forecast)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="arch">
+          <mxGeometry x="20" y="44" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="edge box — the SAME ~$150–300 N100 + OpenVINO from V04&#xa;RT-DETRv2   gaps                       V04&#xa;PP-ShiTuV2  which SKU                   C05&#xa;MiniCPM-V   on-box verification pass    round 2&#xa;label read  → PROMOTION-ERROR check     R01&#39;s sleeper feature&#xa;occlusion suppression while a person overlaps a bay" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="arch">
+          <mxGeometry x="20" y="114" width="430" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="↓ JSON metadata only.  No video leaves the store.&#xa;MQTT (Mosquitto) → Kafka (Apicurio schema)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1" vertex="1" parent="arch">
+          <mxGeometry x="20" y="230" width="430" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="stock-service   gap → replenishment task, count → reconciliation&#xa;I03 planogram   compliance deviation → merchandising task&#xa;price-service   label vs system price → promotion-error task&#xa;Grafana         on-shelf availability, gap-hours, promo errors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="arch">
+          <mxGeometry x="20" y="288" width="430" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="W06 changes ONLY the sensor placement —&#xa;and that single change removes the three reasons&#xa;Bossa Nova failed." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1" vertex="1" parent="arch">
+          <mxGeometry x="20" y="384" width="430" height="66" as="geometry" />
+        </mxCell>
+
+        <mxCell id="trust" value="THE LESSON THAT MATTERS MOST, ENCODED&#xa;&#xa;&quot;Trust is the binding constraint. Solutions must be accurate, actionable and frequent, or vendors lose retailers&#39; and associates&#39; trust — INACCURATE DATA CREATES ADDITIONAL WORK INSTEAD OF FREEING ASSOCIATES UP.&quot;&#xa;&#xa;1 · ACTIONABLE, NOT INFORMATIONAL.  Never emit &quot;bay 3 looks empty&quot;. Emit &quot;replenish SKU-1234 in bay 3, 12 units in the back room, estimated lost sales €48/hour&quot;. A task with a quantity and a value, or nothing.&#xa;2 · A FALSE POSITIVE COSTS MORE THAN A MISS.  An associate walking to a full shelf loses trust permanently. Tune the threshold for PRECISION, not recall, and report precision at the operating point.&#xa;3 · MEASURE THE RESPONSE, NOT THE DETECTION.  The KPI is GAP-HOURS CLOSED, not gaps found. A detection nobody acts on is worse than no detection, because it cost someone a walk." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=12;align=left;spacingLeft=12;verticalAlign=top;spacingTop=10;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="1720" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="priv" value="PRIVACY — stricter in the EU than the China plan assumed, and CAMERA PLACEMENT IS THE ARGUMENT&#xa;No face recognition, no biometric identification (GDPR Art. 9; and biometric categorisation is prohibited-practice territory under the AI Act).  No emotion or sentiment inference on customers OR staff — absolute prohibition since Feb 2025.  No staff monitoring: declining to build it is the answer.&#xa;Cameras point at SHELVES, not aisles. A shelf-edge camera 40cm from a bay, framing the bay, is a fundamentally different privacy proposition from a ceiling camera surveying an aisle — AND IT IS BETTER FOR THE DETECTION TASK. Design and compliance agree here, which is rare and worth saying.&#xa;Person detection only for occlusion suppression: box-level, no cross-frame tracking, no identity, discarded immediately.  Metadata only leaves the store; SHELF thumbnails retained days not months.  DPIA before deployment, signage, lawful basis documented." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=12;verticalAlign=middle;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="800" width="1720" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=3;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" edge="1" parent="1" source="story" target="cmp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" edge="1" parent="1" source="cmp" target="arch">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

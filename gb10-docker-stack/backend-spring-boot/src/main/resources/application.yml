@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: gb10-retail-ai-backend
+  threads:
+    virtual:
+      enabled: true
+
+  ai:
+    openai:
+      base-url: ${SPRING_AI_OPENAI_BASE_URL:http://vllm-core:8000}
+      api-key: not-needed
+      chat:
+        options:
+          model: Qwen/Qwen2.5-32B-Instruct
+          temperature: 0.2
+
+phowhisper:
+  asr-url: ${PHOWHISPER_ASR_URL:http://phowhisper-asr:8090}
+
+comfyui:
+  url: ${COMFYUI_URL:http://comfyui-engine:8188}
+
+milvus:
+  host: ${MILVUS_HOST:milvus-vectordb}
+  port: ${MILVUS_PORT:19530}
+
+server:
+  port: 8080

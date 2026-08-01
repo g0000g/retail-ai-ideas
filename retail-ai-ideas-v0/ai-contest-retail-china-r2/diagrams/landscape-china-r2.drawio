@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="China R2 Robotics Landscape">
+    <mxGraphModel dx="1800" dy="1200" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="China round 2 — retail robotics, sorted by what we can actually build with no hardware" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="1300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="We are a software company with no robots. So the ideas are sorted by a FEASIBILITY LADDER, not by how impressive they sound. Tiers A and B are buildable in this contest with a zero hardware budget." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="46" width="1300" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tA" value="TIER A — pure software, integrate someone else&#39;s robots.   Cost ¥0." style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=13;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="1300" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="[R02] Cross-brand fleet orchestration&#xa;Open-RMF over Geek+ / Quicktron / HAI / Pudu&#xa;&#xa;⭐ MOST DEFENSIBLE — Gartner: &amp;gt;40% of enterprises&#xa;need cross-brand scheduling by 2026, and NO retail&#xa;Open-RMF integration exists in the public record" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;fontStyle=1" vertex="1" parent="tA">
+          <mxGeometry x="20" y="42" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="[R03] Last-mile robot &amp;amp; drone dispatch&#xa;Neolix / Zelos / Keeta, into order-service&#xa;&#xa;⭐ cheapest real win. Neolix: 17,000 vehicles,&#xa;RaaS subscription — we integrate, never buy.&#xa;Model the HYBRID handoff, like Meituan does." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;fontStyle=1" vertex="1" parent="tA">
+          <mxGeometry x="340" y="42" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="[R09] 智能货柜 unmanned retail as a channel&#xa;&#xa;A cabinet is a store with no staff — model it as a&#xa;location + channel and I01/I02/I03/I08/C10 all apply.&#xa;40 facings = the most constrained assortment&#xa;problem in retail." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="tA">
+          <mxGeometry x="660" y="42" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="[R10] Robot fleet safety &amp;amp; incident governance&#xa;&#xa;⭐ the differentiator. Extends I06&#39;s ai_decision.&#xa;Zones as reviewable data · near-miss as a&#xa;first-class type · pre-flight zone gate, fail closed.&#xa;Build it WITH R02, not after." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;fontStyle=1" vertex="1" parent="tA">
+          <mxGeometry x="980" y="42" width="300" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tB" value="TIER B — simulation only, prove it before buying.   Cost ¥0." style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=13;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="40" y="285" width="1300" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value="[R06] Digital twin — simulate the store before buying anything      ⭐ DO THIS FIRST&#xa;&#xa;Gazebo Harmonic (not Isaac Sim — we need layout and traffic, not photorealism, and we have no NVIDIA GPU).&#xa;Replay REAL event streams — planogram changes, gap events, order picks — so the answer is&#xa;&quot;three robots, to keep 95th-percentile task latency under 20 minutes on the week of 双11&quot;, not a guess.&#xa;The traffic_editor map artefact is SHARED with production R02 — that is what makes it a twin, not a model that drifts." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="tB">
+          <mxGeometry x="20" y="42" width="1260" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tC" value="TIER C — one robot, rented or borrowed, for the demo.   Cost: low thousands $." style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#fffdf5;strokeColor=#d6b656;fontStyle=1;fontSize=13;fontColor=#8a6d1e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="450" width="1300" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="[R01] Shelf-scanning robot — the robot is a CAMERA ON WHEELS      ⭐ best demo&#xa;&#xa;Perception is already planned: C05 PP-ShiTuV2 (which SKU) + V04 RT-DETRv2 (is there a gap) + I03 (which SKU should be here).&#xa;R01 adds mobility and nothing else — which is why it is only ~3 weeks on top of C05.&#xa;Sleeper feature: PROMOTION-ERROR detection (shelf label vs price-service). Simbe&#39;s headline is 80M promotion errors fixed, not gaps found." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="tC">
+          <mxGeometry x="20" y="42" width="880" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="[R05] In-store service robot&#xa;a kiosk that moves&#xa;&#xa;C07 agent + V09 UX on a Pudu/Keenon base.&#xa;Unlocks exactly ONE new thing: 跟我来 —&#xa;escort the customer to the bay.&#xa;Measure whether that converts. It may not." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="tC">
+          <mxGeometry x="920" y="40" width="360" height="102" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tD" value="TIER D — needs real fleet investment ($500k–$5M).   Document, don&#39;t build." style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#fdf3f3;strokeColor=#b85450;fontStyle=1;fontSize=13;fontColor=#8a3a36;" vertex="1" parent="1">
+          <mxGeometry x="40" y="615" width="1300" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="d1" value="[R04] 前置仓 goods-to-person picking&#xa;&#xa;Vendor RMS schedules AMRs (Geek+ does 5,000&#xa;in one warehouse). We own SLOTTING and&#xa;ORDER RELEASE — which work with or without robots.&#xa;Ship the tier-A/B subset + the capital business case." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="tD">
+          <mxGeometry x="20" y="42" width="410" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="d2" value="[R07] RFID + robot inventory, fused with vision&#xa;&#xa;Economic gate first: tags pay in apparel and&#xa;electronics, NOT in grocery FMCG.&#xa;The case only fusion finds: system 12 / RFID 12 /&#xa;visible 4 → REPLENISH the facing, not reorder." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="tD">
+          <mxGeometry x="450" y="42" width="410" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="d3" value="[R08] Embodied-AI replenishment arm (VLA)&#xa;⚠ ROADMAP ONLY&#xa;&#xa;Chinese humanoid output +94% in 2026, Unitree +&#xa;AgiBot ≈80% of shipments — but EVERY verified&#xa;deployment is manufacturing/logistics. Retail store&#xa;work is not a deployed use case. Do the licence audit." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;fontStyle=1" vertex="1" parent="tD">
+          <mxGeometry x="880" y="42" width="400" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mkt" value="The strategic read — three facts from the research, put together" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f9f9f9;strokeColor=#999999;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="40" y="800" width="1300" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" value="1 · HARDWARE IS A COMMODITY&#xa;&#xa;Top 5 commercial service robot firms&#xa;worldwide are ALL Chinese, together&#xa;&amp;gt;half the global market, at 40–60%&#xa;below Western prices.&#xa;Geek+: ~56,000 AMRs, 800+ customers." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="mkt">
+          <mxGeometry x="20" y="42" width="410" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" value="2 · THE VENDORS SAY THE MOAT IS SOFTWARE&#xa;&#xa;Geek+&#39;s edge is its RMS scheduler —&#xa;5,000 AMRs in ONE warehouse — and in&#xa;Feb 2026 it launched &quot;Geek+ Brain&quot;,&#xa;explicitly a shift from MOBILITY to&#xa;OPERATION." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="mkt">
+          <mxGeometry x="450" y="42" width="410" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" value="3 · CROSS-BRAND IS THE GAP&#xa;&#xa;Gartner: by 2026 &amp;gt;40% of enterprises&#xa;require cross-brand scheduling, and the&#xa;selection criterion moved from DEVICE&#xa;PERFORMANCE to SYSTEM CAPABILITY.&#xa;&#xa;→ Nobody should build a robot. R02." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;fontStyle=1" vertex="1" parent="mkt">
+          <mxGeometry x="880" y="42" width="400" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="stack" value="The layer cake — our contribution is the top two boxes" style="swimlane;startSize=36;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=13;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="100" width="500" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" value="APPLICATION&#xa;stock · order · purchase · channel · ai-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1" vertex="1" parent="stack">
+          <mxGeometry x="20" y="46" width="460" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" value="FLEET —  Open-RMF   (Apache-2.0, Intrinsic + OSRF)&#xa;multi-vendor traffic · tasks · lifts · doors&#xa;Mutex Groups = &quot;air traffic control principles&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1" vertex="1" parent="stack">
+          <mxGeometry x="20" y="106" width="460" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" value="NAVIGATION —  Nav2&#xa;one robot, A → B, obstacle avoidance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="stack">
+          <mxGeometry x="20" y="182" width="460" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" value="LOCALISATION —  Cartographer / AMCL  (2D, the retail answer)&#xa;FAST-LIO2 / LIO-SAM only for ramps and mezzanines&#xa;⚠ LIO-SAM needs per-point timestamp + ring fields" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="stack">
+          <mxGeometry x="20" y="242" width="460" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" value="MIDDLEWARE —  ROS 2 Humble / Jazzy&#xa;(or AimRT — AgiBot&#39;s ROS-compatible runtime ⚠ licence unverified)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="stack">
+          <mxGeometry x="20" y="318" width="460" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" value="HARDWARE —  Geek+ · Quicktron · HAI · Pudu · Keenon&#xa;Neolix · Zelos · Unitree&#xa;← we buy or rent.  We NEVER build." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=11;fontStyle=1" vertex="1" parent="stack">
+          <mxGeometry x="20" y="380" width="460" height="66" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sim" value="SIMULATION — pick by the question you have&#xa;&#xa;Gazebo Harmonic     ROS 2-native, layout + traffic     ← OUR CHOICE&#xa;Isaac Sim / Lab      digital twin + synthetic perception ⚠ needs NVIDIA GPU&#xa;MuJoCo / MJX         contact-rich manipulation, VLA eval&#xa;Genie Sim 3.0        AgiBot, Isaac-integrated, Sim2Real zero-shot&#xa;                     ⚠ MPL-2.0 (file-level copyleft), parts multi-licensed&#xa;O3DE                 Apache-2.0 + MIT, no NVIDIA lock-in&#xa;&#xa;⚠ &quot;Gazebo worlds aren&#39;t always accurate representations of reality&quot; —&#xa;   so the twin answers NAVIGATION, TRAFFIC and CAPACITY questions,&#xa;   never perception accuracy." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="600" width="500" height="230" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lic" value="⚠ LICENCE WARNING — the VLA section&#xa;&#xa;&quot;&#39;Open source&#39; is used loosely in this space, and several of&#xa;these releases use restricted or NON-COMMERCIAL licences&#xa;despite the label.&quot;   Check the LICENSE file AND the HF model&#xa;card separately — WEIGHTS AND CODE ARE OFTEN LICENSED&#xa;DIFFERENTLY.&#xa;&#xa;Same trap as IDM-VTON (CC BY-NC-SA) and InsightFace.&#xa;⚠ unverified: OpenVLA · RDT-1B · GR00T N1 · AgiBot World ·&#xa;   SmolVLA · π0 · AimRT&#xa;✅ clean: Open-RMF, Nav2, Gazebo, MuJoCo, O3DE (Apache/MIT),&#xa;   Unitree SDKs (BSD 3-Clause), Milvus (Apache-2.0, LF graduated)&#xa;&#xa;The licence audit is 4 hours and should be done regardless." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1380" y="850" width="500" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rec" value="Recommended:  R06 → R02 → R03, with R10 underneath and R01 as the on-stage demo.&#xa;R06 costs nothing and de-risks everything · R02 is the defensible gap · R03 is the cheapest thing here that touches revenue · R10 is the question every retailer asks first." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=12;verticalAlign=middle;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="1000" width="1300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="foot" value="Every claim in this diagram is sourced in 00-china-robotics-market.md. All eight sources for §6 unmanned retail trace to a single vendor press release — treat those figures as directional." style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1110" width="1400" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tA" target="tB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tB" target="tC">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tC" target="tD">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="rising hardware cost and risk" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#999999;strokeWidth=2;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="tA" target="stack">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

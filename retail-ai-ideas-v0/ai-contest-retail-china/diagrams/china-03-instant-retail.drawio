@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="C03 Instant Retail">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="C03 — 即时零售 / 前置仓: three decisions at 3km × 30 minutes, and no LLM anywhere in the hot path" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1450" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="Market ¥800B (2025) → ¥1T+ (2026).  50,000+ front warehouses nationwide, density +40%.  Meituan: 5,000+ 闪电仓, 150M instant orders in a single day.  The 3km radius IS the structural advantage." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1600" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lesson" value="THE LESSON IN THE LOSS NUMBERS&#xa;&#xa;12 months to June 2026:&#xa;   Alibaba  −¥41B&#xa;   JD       −¥26B&#xa;   Meituan  −¥25B EBIT&#xa;&#xa;The platforms are burning cash on SUBSIDIES.&#xa;The durable advantage is FULFILMENT COST PER ORDER,&#xa;decided by three algorithmic choices.&#xa;&#xa;→ We optimise cost per order.&#xa;→ We do NOT model subsidy strategy. Out of scope, explicitly." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="380" height="250" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gate" value="WEEK-1 GATE&#xa;&#xa;Own warehouses + own riders?&#xa;   → the full plan below&#xa;3PL only?&#xa;   → batching collapses to carrier selection&#xa;     + sourcing. Still worth ~8 days.&#xa;     Same gate as I08." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="380" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="nightly" value="NIGHTLY  —  decision 1: what to stock in each 3km warehouse" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="470" y="100" width="500" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="n1" value="pgpool STANDBY → 3km-cell demand panel&#xa;SKU × warehouse × 30-min slot&#xa;covariates: weather · daypart · promo&#xa;            节假日 (春节/618/双11) · local events" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="nightly">
+          <mxGeometry x="20" y="44" width="460" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="Chronos-2 — Apache-2.0, 120M, CPU, covariate-aware&#xa;same model as V03, much finer grain&#xa;baselines first: same-slot-last-week, 4-week MA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="nightly">
+          <mxGeometry x="20" y="128" width="460" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="assortment optimizer (OR-Tools, Apache-2.0)&#xa;2,000–5,000 SKUs out of a 50,000 catalogue&#xa;constraints: shelf/freezer capacity · shelf life · pick time&#xa;+ DEMAND TRANSFERENCE (reuse I03)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="nightly">
+          <mxGeometry x="20" y="202" width="460" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="Transference matters MORE here than in a full store:&#xa;if a shopper cannot get brand A in 30 minutes they take&#xa;brand B — they do not wait." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="nightly">
+          <mxGeometry x="20" y="286" width="460" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="→ replenishment plan per 前置仓 → purchase-service / transfers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="nightly">
+          <mxGeometry x="20" y="358" width="460" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rt" value="REAL TIME  —  decisions 2 and 3.   NO MODEL CALLS IN THIS PATH." style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#fff8ef;strokeColor=#d79b00;fontStyle=1;fontSize=12;fontColor=#a56a00;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="100" width="500" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="rt1" value="2 · SOURCING — which warehouse serves this order&#xa;candidates within radius × stock × rider load × split risk&#xa;deterministic scoring over a PRECOMPUTED distance matrix&#xa;must answer in tens of milliseconds" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="rt">
+          <mxGeometry x="20" y="44" width="460" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="rt2" value="A SPLIT order in instant retail is usually worse than&#xa;a substitution — two riders, two arrival times." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="rt">
+          <mxGeometry x="20" y="132" width="460" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rt3" value="3 · BATCHING — rolling window, seconds&#xa;OR-Tools VRP, HARD 30-minute windows, rider capacity&#xa;tighter windows than I08 → a SMALLER problem per solve,&#xa;because the feasible set is small" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="rt">
+          <mxGeometry x="20" y="192" width="460" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="rt4" value="dispatch → rider app → ETA → customer&#xa;(ETA feeds proactive notification, I07)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="rt">
+          <mxGeometry x="20" y="280" width="460" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="rt5" value="actuals → recalibrate pick time per SKU and travel time&#xa;per cell per daypart. The physical world needs tuning." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf5e8;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="rt">
+          <mxGeometry x="20" y="340" width="460" height="52" as="geometry" />
+        </mxCell>
+
+        <mxCell id="why" value="Why no LLM in the hot path&#xa;&#xa;An LLM call inside a 30-minute promise is an&#xa;outage waiting to happen.&#xa;&#xa;The LLM&#39;s role here is OFFLINE:&#xa;explain the plan to an operator, and answer&#xa;&quot;为什么这单从B仓发货？&quot;&#xa;— grounded on stock, distance and split risk." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1570" y="100" width="200" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="new" value="What has to be created&#xa;&#xa;前置仓 as a location type&#xa;   capacity, freezer/ambient zones,&#xa;   pick-time model            ~2d&#xa;3km cell grid + mapping        ~1d&#xa;rider/fleet model              ~2d&#xa;weather + local-event feed     ~2d&#xa;   (weather is a FIRST-ORDER driver&#xa;    of instant-retail demand)&#xa;OSRM distance matrix per cell  ~1d" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1570" y="350" width="200" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tools" value="Components:   autogluon/chronos-2 (Apache-2.0)   ·   google/or-tools (Apache-2.0)   ·   Project-OSRM/osrm-backend (BSD-2)   ·   QwenLM/Qwen-Agent (Apache-2.0, explanation only)&#xa;Existing services used unchanged:   stock-service (per-warehouse stock)   ·   order-service (O2oFulfillmentController, DeliveryLogController)   ·   channel-service   ·   purchase-service" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#999999;fontSize=11;align=left;spacingLeft=12;dashed=1;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="600" width="1480" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kpi" value="THE metric:  FULFILMENT COST PER ORDER.   Secondary: on-time rate, split rate, substitution rate, orders per rider hour.   Holdout by warehouse or by day (I06).&#xa;Duoduo Maicai — the one survivor of the community-group-buying war — won on exactly this: per-order fulfilment cost ~¥0.7–1, about 60% below the industry average." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=12;verticalAlign=middle;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="710" width="1480" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="lesson" target="gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" edge="1" parent="1" source="lesson" target="nightly">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n1" target="n2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n2" target="n3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="stock is where it needs to be" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=3;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="nightly" target="rt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rt1" target="rt2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rt2" target="rt3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rt3" target="rt4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;dashed=1;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rt" target="why">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

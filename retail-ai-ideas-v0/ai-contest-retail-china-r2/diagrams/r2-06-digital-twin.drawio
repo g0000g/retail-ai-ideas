@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="R06 Digital Twin">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1780" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="R06 — Digital twin: answer &quot;how many robots?&quot; with a curve, before the procurement conversation" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1450" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="Tier B — zero hardware, zero licences to buy. The only idea in this folder that is 100% buildable today, and it de-risks every other one." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1500" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="world" value="WORLD  —  Gazebo Harmonic" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="420" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="w1" value="floor plan → walls, fixtures, aisles, doors, lifts&#xa;⚠ THE FLOOR PLAN IS THE PREREQUISITE&#xa;   manual, ~one afternoon per store, no shortcut" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="world">
+          <mxGeometry x="20" y="44" width="380" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="w2" value="aisle widths&#xa;← R01&#39;s 36-inch clearance constraint is CHECKABLE here" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="world">
+          <mxGeometry x="20" y="114" width="380" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="w3" value="charging docks · parking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="world">
+          <mxGeometry x="20" y="168" width="380" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="w4" value="dynamic obstacles: customers, trolleys, pallets&#xa;spawned at configurable density&#xa;→ compare off-peak vs trading-hours operation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="world">
+          <mxGeometry x="20" y="208" width="380" height="62" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rob" value="ROBOTS&#xa;&#xa;N × Nav2-driven bases with realistic footprints,&#xa;speeds and sensor plugins&#xa;&#xa;heterogeneous &quot;vendors&quot; via separate ROS_DOMAIN_IDs&#xa;— the free_fleet example pattern" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="420" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fleet" value="FLEET&#xa;&#xa;Open-RMF traffic_editor map&#xa;mutex groups on congestion points&#xa;&#xa;⭐ THE SAME MAP ARTEFACT R02 USES IN PRODUCTION&#xa;— that is what makes this a digital TWIN rather than&#xa;a separate model that drifts." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="590" width="420" height="160" as="geometry" />
+        </mxCell>
+
+        <mxCell id="work" value="WORKLOAD  —  this is what makes it a business tool, not a robotics toy" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#fffdf5;strokeColor=#d6b656;fontStyle=1;fontSize=12;fontColor=#8a6d1e;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="480" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="k1" value="REPLAY REAL TASK STREAMS from our services:&#xa;&#xa;I03 planogram changes      → scan tasks&#xa;V04 shelf-gap events       → targeted re-scans&#xa;order picks                → delivery tasks&#xa;C03 instant-retail orders  → picking + handoff" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="work">
+          <mxGeometry x="20" y="44" width="440" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="k2" value="driven by dim_calendar, so 双11 / 春节 peaks are&#xa;SIMULATED, not averaged away" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="work">
+          <mxGeometry x="20" y="160" width="440" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="k3" value="Anyone can simulate robots driving around.&#xa;Feeding it our ACTUAL event history is what makes&#xa;the answer credible:&#xa;&#xa;&quot;three robots, to keep 95th-percentile task latency&#xa;under 20 minutes on the week of 双11&quot;&#xa;&#xa;— a sentence a CFO can act on." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="work">
+          <mxGeometry x="20" y="218" width="440" height="98" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ans" value="ANSWERS the twin produces" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="520" y="470" width="480" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="n1" value="robots needed for a given SLA  →  the curve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1" vertex="1" parent="ans">
+          <mxGeometry x="20" y="44" width="440" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="route feasibility · scan time per store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="ans">
+          <mxGeometry x="20" y="86" width="440" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n3" value="deadlock hotspots  →  where to put mutex groups" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="ans">
+          <mxGeometry x="20" y="128" width="440" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="charge-window planning · task latency distribution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="ans">
+          <mxGeometry x="20" y="170" width="440" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="COST PER TASK at vendor price points&#xa;goods-to-person carriers $25k–50k/unit,&#xa;transport AMRs $25k–80k → the capital business case" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;fontStyle=1" vertex="1" parent="ans">
+          <mxGeometry x="20" y="212" width="440" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pick" value="Simulator choice — and why not the flashy one" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f9f9f9;strokeColor=#999999;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="100" width="680" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" value="✅ Gazebo Harmonic — OUR CHOICE&#xa;native ROS 2 via ros_gz_bridge · realistic sensor plugins · large world library&#xa;Our deployed nav stack IS ROS 2-native, and we need LAYOUT AND TRAFFIC, not photorealism." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="pick">
+          <mxGeometry x="20" y="44" width="640" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" value="🟡 Isaac Sim / Isaac Lab — best for digital twins + SYNTHETIC PERCEPTION DATA&#xa;open-sourced 2025 · PhysX + RTX · OpenUSD · ROS 2 Bridge&#xa;⚠ needs an NVIDIA GPU we do not have. Reserve for ONE purpose: synthetic shelf images if C05&#39;s gallery is weak." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="pick">
+          <mxGeometry x="20" y="114" width="640" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" value="🟡 MuJoCo / MJX — contact-rich manipulation, VLA evaluation → only relevant to R08&#xa;⚠ RGB-D and 3D LiDAR need manual setup as of Jan 2026; rendering functional, not photorealistic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="pick">
+          <mxGeometry x="20" y="188" width="640" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" value="🟡 Genie Sim 3.0 (AgibotTech/genie_sim) — Isaac-integrated, Sim2Real zero-shot benchmarks&#xa;⚠ MPL-2.0 on geniesim_* and data_collection; scene_reconstruction MULTI-LICENSED. MPL is file-level copyleft — read it.&#xa;🟡 O3DE — Apache-2.0 + MIT, game-engine rendering without NVIDIA lock-in     ·     🟡 Genesis — multi-physics newcomer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="pick">
+          <mxGeometry x="20" y="248" width="640" height="66" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bound" value="FIDELITY BOUNDARY — state it explicitly&#xa;&#xa;&quot;Gazebo worlds aren&#39;t always accurate representations of reality,&#xa;which complicates testing vision-based algorithms.&quot;&#xa;&#xa;So the twin answers NAVIGATION, TRAFFIC and CAPACITY questions.&#xa;It does NOT validate perception accuracy — that is C05&#39;s job, on real images.&#xa;&#xa;Re-calibrate speeds and service times from real robot logs the moment one is available.&#xa;The physical world needs tuning a minimal model cannot see." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1060" y="470" width="680" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="cap" value="Cap the scope: ONE store, ONE week of replayed workload, THREE questions —&#xa;how many robots, where do they deadlock, what does it cost.  Otherwise this becomes a research project." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="670" width="680" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="demo" value="Demo:  run with 1 robot → 95th-percentile task latency 71 minutes.  Run with 3 → 18 minutes.  &quot;Three robots, and here is the curve.&quot;&#xa;Then: deadlock heatmap lights one corridor → enable an RMF mutex group → it clears.  Then: turn on trading-hours customer density → scan time doubles → &quot;which is why it runs off-peak.&quot;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=12;verticalAlign=middle;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="790" width="1700" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="world" target="rob">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="rob" target="fleet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="tasks" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="work" target="fleet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="work" target="ans">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="pick" target="bound">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

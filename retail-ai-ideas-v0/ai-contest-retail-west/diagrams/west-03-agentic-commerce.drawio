@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="W03 Agentic Commerce">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="W03 — Multi-protocol agentic merchant: ACP and AP2 are LAYERS, not rivals" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="&quot;ACP is the commerce/checkout protocol, AP2 is the payment-consent protocol, and a full agentic purchase uses both.&quot;   ACP owns shopping · AP2 owns governance and trust · x402 handles machine payments." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1700" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="chg" value="What changed since set-1 idea 03 was written" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#fdf3f3;strokeColor=#b85450;fontStyle=1;fontSize=12;fontColor=#8a3a36;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="500" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" value="THEN: ACP vs UCP, choose one&#xa;NOW:  different LAYERS — a purchase uses both" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="chg">
+          <mxGeometry x="20" y="44" width="460" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" value="THEN: AP2 is a Google protocol&#xa;NOW:  AP2 v0.2 DONATED TO THE FIDO ALLIANCE,&#xa;      28 April 2026 → community governance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="chg">
+          <mxGeometry x="20" y="104" width="460" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" value="THEN: ChatGPT Instant Checkout is the flagship&#xa;NOW:  THAT SURFACE SHUT DOWN, March 2026 —&#xa;      the widely-cited 4% fee is of UNCONFIRMED&#xa;      applicability. Verify live terms. Do NOT put it&#xa;      in a business case." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="chg">
+          <mxGeometry x="20" y="176" width="460" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" value="NOW:  Visa Intelligent Commerce Connect (8 Apr 2026)&#xa;      is a PROTOCOL-AGNOSTIC on-ramp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="chg">
+          <mxGeometry x="20" y="266" width="460" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tension" value="THE TENSION THAT DECIDES HOW MUCH TO BUILD&#xa;&#xa;McKinsey, US agentic commerce by 2030     $1 TRILLION&#xa;Shoppers using agents to buy today        ~1%&#xa;NRF 2026 retailers implementing it        75%&#xa;Adobe: genAI traffic to US retail sites   +4,700% YoY&#xa;&#xa;&quot;Infrastructure is way ahead of consumers.&quot;&#xa;&#xa;→ &quot;INSTRUMENT AGENT TRANSACTION FLOWS NOW,&#xa;   WHILE VOLUMES ARE LOW ENOUGH TO DEBUG PROPERLY.&quot;&#xa;&#xa;This is a READINESS play, not a revenue play —&#xa;and readiness is cheap while volume is near zero." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="500" height="290" as="geometry" />
+        </mxCell>
+
+        <mxCell id="stack" value="The stack" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="590" y="90" width="580" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="s0" value="External agents:  ChatGPT · Gemini · Claude · procurement bots&#xa;                  + the Visa ICC on-ramp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="stack">
+          <mxGeometry x="20" y="44" width="540" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="DISCOVERY   /.well-known/agent-card.json   ·   /.well-known/ucp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="stack">
+          <mxGeometry x="20" y="100" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="PROTOCOL SURFACE   (ecommerce-bff)&#xa;ACP  (REST)          checkout_sessions · complete · cancel · webhooks&#xa;UCP  (A2A JSON-RPC)  agent cart · catalogue · IDENTITY LINKING for loyalty&#xa;MCP                  browse-before-buy — ai-service tools, ALREADY BUILT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="stack">
+          <mxGeometry x="20" y="146" width="540" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="AP2 CONSENT LAYER — the part set-1 idea 03 did not have&#xa;&#xa;three signed MANDATES as W3C Verifiable Credentials:&#xa;   INTENT   what the user authorised the agent to do&#xa;   CART     what the agent actually assembled&#xa;   PAYMENT  the funding instrument and its limits&#xa;&#xa;verify the chain BEFORE fulfilling.  Stablecoin rails first-class." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="stack">
+          <mxGeometry x="20" y="232" width="540" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="ONE ADAPTER LAYER → ONE internal AgenticCheckoutSession&#xa;protocol churn costs ONE FILE, not a service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1" vertex="1" parent="stack">
+          <mxGeometry x="20" y="360" width="540" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="validate SKUs → price for channel AGENT → promotion engine negotiates&#xa;→ reserve stock → payment → order (orderType = AGENT)&#xa;Existing services, unchanged. Nothing forked, no fast path." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="stack">
+          <mxGeometry x="20" y="420" width="540" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" value="INSTRUMENTATION FIRST — every agent interaction into ai_decision (I06)&#xa;+ OTel spans. The funnel: discovery → session → cart → mandate verified&#xa;→ complete, with failure reasons BY PROTOCOL.&#xa;This is the artefact worth having while volumes are 1%." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="stack">
+          <mxGeometry x="20" y="496" width="540" height="86" as="geometry" />
+        </mxCell>
+
+        <mxCell id="opa" value="The OPA gate matters more here than anywhere&#xa;&#xa;An autonomous agent holding a payment token is the&#xa;highest-consequence caller we will ever expose.&#xa;&#xa;allow if {&#xa;  input.principal.type == &quot;agent&quot;&#xa;  input.action == &quot;complete_checkout&quot;&#xa;  input.cart.total &amp;lt;= input.mandate.payment.limit   # AP2 Payment&#xa;  input.cart.items ⊆ input.mandate.cart.items      # AP2 Cart&#xa;  input.mandate.intent.verified == true            # AP2 Intent&#xa;  input.cart.total &amp;lt;= input.session.budgetRemaining&#xa;}&#xa;&#xa;THE MANDATE CHAIN BECOMES POLICY INPUT.&#xa;Cryptographically-signed consent, enforced by a policy&#xa;engine that already runs in production. That is the slide." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontFamily=Courier New;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="90" width="540" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="new" value="A genuinely NEW capability, not just compliance&#xa;&#xa;An Intent / Cart / Payment mandate chain is BETTER&#xa;EVIDENCE OF CONSENT than anything we have for a&#xa;human checkout.&#xa;&#xa;Verify it, store it against the order, and use it for&#xa;DISPUTE HANDLING.&#xa;&#xa;Human checkout gives us a session log.&#xa;Agent checkout gives us a signed credential chain." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1220" y="450" width="540" height="260" as="geometry" />
+        </mxCell>
+
+        <mxCell id="foot" value="Acceptance rails exist and are NOT competing protocols:  Visa Intelligent Commerce Connect (protocol-agnostic, 8 Apr 2026) · Mastercard Agent Pay · Amex ACE (first consumer-protection programme for agentic commerce).&#xa;Governance is consolidating: an Agentic Authentication Technical Working Group chaired by CVS Health, Google and OpenAI, with vice-chairs from Amazon and Okta.  Merchant signal: Gap + Google, with Gap&#39;s CTO saying UCP gives merchants MORE CONTROL than ACP.&#xa;Structural risk named in the sources: proprietary agents inside Amazon, OpenAI or Google could fragment the ecosystem. Our answer is open standards plus one internal model — a proprietary surface then costs one more adapter.&#xa;Phase 1 alone (7 days) — a normalised internal model plus instrumentation — is the defensible minimum, and it is exactly what the market guidance says to do first." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#999999;fontSize=12;align=left;spacingLeft=12;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="750" width="1720" height="140" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="chg" target="tension">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.15;exitDx=0;exitDy=0;entryX=0;entryY=0.1;entryDx=0;entryDy=0;" edge="1" parent="1" source="chg" target="stack">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s0" target="s1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s4" target="s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="s5" target="s6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="mandate chain → policy input" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.45;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="stack" target="opa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="opa" target="new">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

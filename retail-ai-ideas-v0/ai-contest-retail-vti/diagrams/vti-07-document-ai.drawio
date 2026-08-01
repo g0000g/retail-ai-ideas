@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="V07 Document AI">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1850" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="V07 — Document AI: invoice → PO → goods receipt 3-way match, with an XML fast path that skips the model entirely" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1400" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="in" value="Supplier email&#xa;· upload&#xa;· e-invoice XML" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="230" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="minio" value="MinIO&#xa;raw document, immutable&#xa;hash-deduplicated" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="180" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipe" value="ai-service   /v1/ai/extract-document      (async, a workflow-service flow — not a request path)" style="swimlane;startSize=36;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="280" y="90" width="560" height="640" as="geometry" />
+        </mxCell>
+        <mxCell id="p0" value="0 · classify document type&#xa;invoice | PO confirmation | GRN | credit note | contract" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="50" width="520" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" value="1 · e-invoice XML present?  ──▶  PARSE STRUCTURALLY&#xa;NO OCR.  NO MODEL.  NO COST.  Done.&#xa;Vietnamese e-invoices are XML — always prefer this path.&#xa;2 days of work; cuts the volume the AI ever sees." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="116" width="520" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" value="2 · PDF with a text layer?  ──▶  Apache Tika + layout rules&#xa;per-supplier templates for the top 2–3 suppliers cover most volume" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="212" width="520" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" value="3 · scan / photo  ──▶  TIER 0, local, no egress&#xa;PaddleOCR detect + recognise + table structure   (Apache-2.0)&#xa;VietOCR for Vietnamese text lines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="286" width="520" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" value="4 · structure to schema — TIER 0  qwen3.5:4b, JSON-schema-constrained&#xa;seller/buyer MST · serial · number · date · lines · VAT rate · totals · refs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="370" width="520" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="p5" value="5 · ARITHMETIC VALIDATOR — not a model output&#xa;qty × unitPrice = amount ·  Σ lines = subtotal ·  subtotal + VAT = total&#xa;fails? the extraction is wrong → repair loop (max 2), never persist" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="444" width="520" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="p6" value="6 · still failing?  ──▶  Qwen3-VL 4B  ──▶  TIER 2 MiniMax-M2.5&#xa;⚠ supplier terms are commercially sensitive:&#xa;   tokenise identifiers, require sign-off, log every escalation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="528" width="520" height="68" as="geometry" />
+        </mxCell>
+
+        <mxCell id="match" value="3-way match engine   —   DETERMINISTIC, not a model" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="900" y="150" width="420" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" value="invoice   ↔   purchase-service PO   ↔   stock-service GRN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1" vertex="1" parent="match">
+          <mxGeometry x="20" y="44" width="380" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" value="tolerances as DATA, per supplier:&#xa;qty · unit price · total · tax · currency · dates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="match">
+          <mxGeometry x="20" y="102" width="380" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" value="join on TAX CODE (MST), never on supplier name&#xa;— names are typed inconsistently, MST is unique" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1" vertex="1" parent="match">
+          <mxGeometry x="20" y="170" width="380" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" value="fraud checks: hash dedup · MST+invoice-number uniqueness&#xa;· supplier bank-account change detection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="match">
+          <mxGeometry x="20" y="238" width="380" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ok" value="ALL MATCH within tolerance&#xa;AND every field high-confidence&#xa;AND amount under threshold&#xa;→ auto-approve" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1390" y="150" width="330" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="exc" value="MISMATCH → AP exception queue&#xa;discrepancy named and quantified&#xa;&quot;invoice qty 120 vs GRN 118 vs PO 120&#xa; — short delivery, VND 240,000&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1390" y="290" width="330" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="pay" value="payment-service&#xa;payable created" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="430" width="330" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui" value="AP review UI&#xa;&#xa;original page with BOUNDING BOXES beside the extracted fields&#xa;click a field → its box highlights on the page&#xa;low-confidence fields amber&#xa;&#xa;This one UI detail is what makes AP staff trust the system.&#xa;Corrections are captured as labelled data for template rules." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="900" y="540" width="420" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="contract" value="Optional: contract check (+3 days)&#xa;&#xa;pgvector index over supplier contracts&#xa;flag invoices priced above the contracted rate,&#xa;or with payment terms that differ&#xa;&#xa;This is where &quot;6× lower procurement cost&quot;&#xa;stops being a slogan." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="540" width="330" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="Why this is the clearest money slide:  the baseline is measurable today (minutes per invoice × invoices per month × loaded cost), the output is verifiable by construction&#xa;(a 3-way match either reconciles or it does not, so &quot;hallucination&quot; is not the objection), and the failure mode is safe — an unmatched invoice goes to a human, exactly as today.&#xa;&#xa;Best engineering decision in this plan:  the XML fast path, which uses no AI at all.  Locale trap to unit-test:  Vietnamese number format 1.234.567,89 and diacritics." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;dashed=1;align=left;spacingLeft=10;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="800" width="1680" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="in" target="minio">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="minio" target="pipe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p0" target="p1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="p1" target="p2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="p2" target="p3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p3" target="p4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p4" target="p5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="fails twice" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="p5" target="p6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="XML fast path — straight to match" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=11;fontColor=#8a6d1e;" edge="1" parent="1" source="p1" target="match">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="validated extraction" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="p5" target="match">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="match" target="ok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;exitX=1;exitY=0.65;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="match" target="exc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="ok" target="exc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="exc" target="pay">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" value="review" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="match" target="ui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

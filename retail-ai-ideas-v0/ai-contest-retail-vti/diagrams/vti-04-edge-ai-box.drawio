@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="V04 Edge AI Box">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="V04 — Edge AI box: inference in the store, metadata to the platform, video never leaves" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="store" value="IN STORE — edge box, ~$150 (Intel N100 + OpenVINO) or ~$250 (RPi5 + Hailo-8L).  Start on a spare laptop; buy hardware only for a pilot." style="swimlane;startSize=44;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="620" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="cam" value="camera (USB / IP)&#xa;fixed position, calibrated once" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="store">
+          <mxGeometry x="20" y="56" width="580" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="samp" value="frame sampler — 1–5 FPS, not 30" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="store">
+          <mxGeometry x="20" y="118" width="580" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="det" value="RT-DETRv2   Apache-2.0   ·   NMS-free end-to-end&#xa;person · shopping basket · shelf region · vehicle&#xa;≈54.3 mAP, stronger than YOLO on occluded scenes&#xa;— and a crowded shelf IS an occluded scene" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="store">
+          <mxGeometry x="20" y="174" width="580" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="trk" value="ByteTrack   MIT   ·   detector-agnostic&#xa;track IDs → dwell time, queue duration, footfall&#xa;track dies when the person leaves frame — no identity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="store">
+          <mxGeometry x="20" y="270" width="580" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="shelf" value="shelf-gap detector — classical CV, no training&#xa;operator draws shelf-bay ROIs once per camera&#xa;occupancy ratio vs a &quot;full&quot; reference frame&#xa;ROI suppressed while a person box overlaps it&#xa;N-of-M verification before publishing anything" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="store">
+          <mxGeometry x="20" y="356" width="580" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="plate" value="PaddleOCR   Apache-2.0   —   pickup bay only&#xa;matched ONLY against plates voluntarily registered&#xa;on a pending BOPIS order (a 5-candidate match,&#xa;not open recognition). Deleted after pickup." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="store">
+          <mxGeometry x="20" y="466" width="580" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="mqtt" value="Mosquitto MQTT&#xa;store/{storeId}/vision/{signal}&#xa;&#xa;already the store-device channel&#xa;(the POS offline sync uses it)&#xa;&#xa;JSON metadata only — a few hundred&#xa;bytes/sec. Frames never leave the box.&#xa;Buffers locally when offline." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="720" y="150" width="290" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="bridge" value="MQTT → Kafka bridge&#xa;event schema registered in Apicurio&#xa;(mvn verify -Pschema-registry gate)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="400" width="290" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cons" value="Platform consumers — all already running" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="150" width="380" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="k1" value="stock-service&#xa;shelf gap → reconciliation task&#xa;+ thumbnail of the SHELF (not a person)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="cons">
+          <mxGeometry x="20" y="44" width="340" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="k2" value="order-service&#xa;plate matched → BOPIS&#xa;&quot;customer arrived&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="cons">
+          <mxGeometry x="20" y="122" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="k3" value="Postgres&#xa;footfall · dwell · queue time series" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;boundedLbl=1;" vertex="1" parent="cons">
+          <mxGeometry x="20" y="194" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="k4" value="Grafana (LGTM already deployed)&#xa;live store board · queue SLO alert&#xa;conversion rate = visitors → transactions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="cons">
+          <mxGeometry x="20" y="266" width="340" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="k5" value="back-office heatmap view" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="cons">
+          <mxGeometry x="20" y="344" width="340" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="priv" value="PRIVACY — decided before any code&#xa;&#xa;✗ no face recognition, no face embeddings, no identity&#xa;✗ no video egress, no recording by default&#xa;✗ NO staff monitoring — no shrinkage-by-cashier,&#xa;   no productivity-per-employee. Declining to build&#xa;   this is a better answer than mitigating it.&#xa;✓ entrance signage in Vietnamese&#xa;✓ shelf thumbnails retained days, not months&#xa;✓ plate data deleted after pickup&#xa;&#xa;Basis: Decree 13/2023/ND-CP + the Personal Data&#xa;Protection Law in force from 2026 — confirm with legal." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="600" width="380" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lic" value="LICENCE POSITION — put this on a slide&#xa;&#xa;RT-DETRv2     Apache-2.0&#xa;ByteTrack     MIT&#xa;PaddleOCR     Apache-2.0&#xa;OpenVINO      Apache-2.0&#xa;&#xa;✗ Ultralytics YOLO v5/v8/11/26 — AGPL-3.0.&#xa;  The network clause has no &quot;only on our&#xa;  servers&quot; loophole and the copyleft reaches&#xa;  the WHOLE derivative work.&#xa;  We chose the permissive stack on purpose." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="660" y="600" width="380" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="vs" value="Why this beats the datacentre-GPU version&#xa;&#xa;GPU in the rack            → not needed, inference is at the edge&#xa;video streamed off-site    → not needed, only JSON leaves&#xa;CCTV vendor API access     → not needed, our own camera&#xa;Elasticsearch 8.x          → not needed, MQTT → Kafka → Postgres&#xa;&#xa;Four blockers become one (privacy), and that one is far more&#xa;defensible when no video ever leaves the store." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;dashed=1;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="710" width="600" height="200" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cam" target="samp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="samp" target="det">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="det" target="trk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="trk" target="shelf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="shelf" target="plate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="metadata only" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=11;fontColor=#3d7a2a;" edge="1" parent="1" source="store" target="mqtt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="mqtt" target="bridge">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="Kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=11;" edge="1" parent="1" source="bridge" target="cons">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

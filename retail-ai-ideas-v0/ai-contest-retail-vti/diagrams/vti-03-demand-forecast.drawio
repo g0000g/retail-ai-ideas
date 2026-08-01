@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="V03 Demand Forecast">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="V03 — Demand forecasting on Chronos-2: zero-shot, covariate-aware, Apache-2.0, 120M params, CPU" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1350" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="src" value="Sources — pgpool STANDBY, never the primary" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="300" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" value="order-service + pos-service&#xa;daily sales qty per SKU × store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="src">
+          <mxGeometry x="15" y="44" width="270" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" value="after-sales-service&#xa;returns" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="src">
+          <mxGeometry x="15" y="96" width="270" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" value="stock-service&#xa;on-hand + STOCKOUT FLAG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;fontStyle=1" vertex="1" parent="src">
+          <mxGeometry x="15" y="148" width="270" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" value="purchase-service&#xa;in-transit / open POs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="src">
+          <mxGeometry x="15" y="200" width="270" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" value="vendor-service&#xa;lead time · MOQ · case pack&#xa;⚠ verify actually populated" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="src">
+          <mxGeometry x="15" y="252" width="270" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" value="price-service + promotion-service&#xa;price &amp;amp; promo intensity — MANDATORY covariate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1" vertex="1" parent="src">
+          <mxGeometry x="15" y="314" width="270" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" value="dim_calendar  ❌ MUST BE CREATED&#xa;Tet proximity · holidays · paydays&#xa;VN demand is lunar-calendar driven" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1" vertex="1" parent="src">
+          <mxGeometry x="15" y="376" width="270" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gate" value="PHASE 1 GATE — do this FIRST&#xa;&#xa;How many months of clean daily history?&#xa;&amp;lt; 14 months = no full Tet cycle&#xa;→ pivot to a 7–14 day horizon and say so.&#xa;&#xa;This check decides whether the idea&#xa;is viable at all." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="590" width="300" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="fb" value="Feature build&#xa;&#xa;daily SKU × store panel&#xa;&#xa;PAST covariates&#xa;  price · promo intensity · returns&#xa;  stockout flag&#xa;&#xa;FUTURE-KNOWN covariates&#xa;  promo calendar · holidays&#xa;  Tet proximity · payday&#xa;&#xa;⚠ censored demand: a stockout day looks&#xa;   like low demand. Mask or impute it.&#xa;   The most common silent killer of&#xa;   retail forecasts." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="400" y="120" width="300" height="330" as="geometry" />
+        </mxCell>
+
+        <mxCell id="job" value="Chronos-2 in the model sidecar   (FastAPI, CPU)" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="760" y="100" width="420" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="j0" value="baselines first: naive seasonal, 4-week MA&#xa;nothing ships unless it beats them" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf5e8;strokeColor=#82b366;fontSize=11;fontStyle=1" vertex="1" parent="job">
+          <mxGeometry x="20" y="44" width="380" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="j1" value="autogluon/chronos-2 — Apache-2.0, 120M, encoder-only&#xa;ZERO-SHOT: no training run, no per-series tuning&#xa;univariate + multivariate + COVARIATE-INFORMED&#xa;emits QUANTILE forecasts, not point estimates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="job">
+          <mxGeometry x="20" y="100" width="380" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="j2" value="horizon = max(lead time) + review period&#xa;rolling-origin backtest&#xa;WAPE + bias, sliced by ABC class &amp;amp; store format&#xa;intermittent / long-tail SKUs reported SEPARATELY" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="job">
+          <mxGeometry x="20" y="196" width="380" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="j3" value="fallback if memory/latency is tight:&#xa;chronos-bolt-small 48M / -base 205M (Apache-2.0)&#xa;up to 250× faster than original Chronos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf5e8;strokeColor=#82b366;fontSize=11;dashed=1;align=left;spacingLeft=8;" vertex="1" parent="job">
+          <mxGeometry x="20" y="292" width="380" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="tbl" value="ai_demand_forecast&#xa;partitioned Postgres table&#xa;quantiles per SKU × store × date&#xa;(no TimescaleDB needed)" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;boundedLbl=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="510" width="300" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rep" value="Replenishment logic&#xa;&#xa;safety stock from the MODEL&apos;S OWN&#xa;quantile spread (P90 − P50) —&#xa;not a flat service-level %&#xa;&#xa;reorder point = lead-time demand&#xa;                + safety stock&#xa;&#xa;qty respects MOQ · case pack&#xa;             shelf life · shelf capacity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="760" y="530" width="420" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="po" value="purchase-service&#xa;PO status = SUGGESTED&#xa;&#xa;buyer approves / adjusts / rejects&#xa;reason captured as feedback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1240" y="530" width="300" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="realpo" value="real PO → vendor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="720" width="300" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="agent" value="ai-service replenishment agent (MCP tools)&#xa;&#xa;get_forecast · list_stockout_risk&#xa;explain_suggestion · simulate_scenario&#xa;&#xa;TIER 0 qwen3.5:4b writes the Vietnamese&#xa;narrative from a STRUCTURED input&#xa;(covariate contributions + quantile bands)&#xa;&#xa;TIER 2 MiniMax only for open-ended&#xa;buyer questions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="100" width="300" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="dash" value="Buyer dashboard&#xa;stockout risks ranked by lost-revenue estimate&#xa;actual vs forecast with P10–P90 band" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="370" width="300" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="whatif" value="&quot;nếu tuần sau giảm giá 20% thì sao?&quot;&#xa;→ change the promo covariate, re-forecast live.&#xa;THIS is the Chronos-2 payoff: covariates make&#xa;what-if actually work instead of being a guess." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1580" y="100" width="180" height="230" as="geometry" />
+        </mxCell>
+
+        <mxCell id="honest" value="Honest caveat for the pitch: Chronos-2 trained on real PLUS large-scale synthetic data, and its leaderboard numbers may overlap public retail datasets.&#xa;Quote our own rolling-origin backtest, not the leaderboard. Suggest-never-execute: the buyer approves every PO. Trust KPI = falling override rate." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;dashed=1;align=left;spacingLeft=10;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="400" y="820" width="1140" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="nightly" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=3;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="src" target="fb">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="panel + covariates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.45;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="fb" target="job">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="quantile forecast" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=0;exitY=0.9;exitDx=0;exitDy=0;entryX=1;entryY=0.4;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="job" target="tbl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" edge="1" parent="1" source="tbl" target="rep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="suggested qty" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="rep" target="po">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="approve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="po" target="realpo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="reads forecast + contributions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="job" target="agent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="agent" target="dash">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="dash" target="po">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="agent" target="whatif">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

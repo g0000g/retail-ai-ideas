@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="C02 Private Domain">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1780" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="C02 — 私域运营 agent: draft-by-default, WxJava is Java, inference stays domestic" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="2026 私域 trend #1: &quot;AI moves from optional to standard operating infrastructure.&quot;  And LLM agents can now simulate 团长 as digital clones (→ C09)." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1500" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="wecom" value="企业微信 WeCom&#xa;&#xa;customer chat · group chat (社群)&#xa;Moments (朋友圈)&#xa;channel live codes (渠道活码)&#xa;message archive callback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="300" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="scrm" value="SCRM layer — adopt, do not build a fourth&#xa;&#xa;OpenSCRM (Go, Apache-2.0)&#xa;   only MySQL + Redis. Delayed queues on Redis,&#xa;   full-text search on MySQL 8. No Kafka/ES.&#xa;MarketGo-SCRM (Java microservices)&#xa;源雀 Iyque-SCRM (Apache-2.0)&#xa;   ← READ THIS FIRST: already does WeCom AI CS&#xa;     + Milvus RAG + chat-record capture&#xa;&#xa;binarywang/WxJava — Java SDK&#xa;   WeChat Pay · mini programs · WeCom · Channels&#xa;   → drops into Spring Boot 4.1 with no language boundary" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="300" width="300" height="270" as="geometry" />
+        </mxCell>
+
+        <mxCell id="agent" value="ai-service — private-domain agent   (Qwen-Agent, Apache-2.0)" style="swimlane;startSize=36;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="400" y="110" width="480" height="460" as="geometry" />
+        </mxCell>
+        <mxCell id="ag1" value="intent + entity extraction&#xa;Qwen3.6, schema-constrained + validator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="agent">
+          <mxGeometry x="20" y="50" width="440" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ag2" value="retrieval — RAGFlow (Apache-2.0)&#xa;product manuals · 售后政策 · FAQ · 话术库&#xa;DeepDoc parses the messy PDFs these arrive as" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="agent">
+          <mxGeometry x="20" y="112" width="440" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="ag3" value="MCP tools → our services&#xa;search_product · get_stock · get_price&#xa;get_applicable_promotions · get_order_status" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="agent">
+          <mxGeometry x="20" y="186" width="440" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="ag4" value="reply DRAFT — never auto-send by default&#xa;auto-send is a PER-SCENARIO opt-in (e.g. order status),&#xa;never the global setting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1" vertex="1" parent="agent">
+          <mxGeometry x="20" y="260" width="440" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="ag5" value="VALIDATOR&#xa;no invented price · no invented promise · correct order ref" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="agent">
+          <mxGeometry x="20" y="334" width="440" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="ag6" value="tag writer → WeCom tags + tags-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="agent">
+          <mxGeometry x="20" y="392" width="440" height="46" as="geometry" />
+        </mxCell>
+
+        <mxCell id="jobs" value="Four jobs, each with an owner who benefits" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#fffdf5;strokeColor=#d6b656;fontStyle=1;fontSize=12;fontColor=#8a6d1e;" vertex="1" parent="1">
+          <mxGeometry x="940" y="110" width="420" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="j1" value="1 · reply drafting for 导购/客服&#xa;   frontline staff — BUILD THIS FIRST&#xa;   highest volume, lowest risk, and the edit&#xa;   distance is a free quality metric" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="jobs">
+          <mxGeometry x="20" y="44" width="380" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="j2" value="2 · customer tagging from conversation&#xa;   marketing — intent, category, objection, life stage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="jobs">
+          <mxGeometry x="20" y="124" width="380" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="j3" value="3 · follow-up scheduling&#xa;   store manager — replenishment cycle (reuse V05&#39;s&#xa;   replenishment-due segment), cart abandon, tier change" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="jobs">
+          <mxGeometry x="20" y="184" width="380" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j4" value="4 · 社群 content — validated against live price/stock&#xa;   ⚠ AI-generated group posts need 标识 labels" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="jobs">
+          <mxGeometry x="20" y="254" width="380" height="26" as="geometry" />
+        </mxCell>
+
+        <mxCell id="side" value="WeCom staff sidebar&#xa;&#xa;draft + the EVIDENCE behind it&#xa;(which SKU, which store, which price record)&#xa;one-click send / edit / discard&#xa;&#xa;outcome → ai_decision (I06)&#xa;accepted · edited · discarded&#xa;&#xa;override rate is the trust KPI —&#xa;the same as V02&#39;s rostering" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="940" y="440" width="420" height="230" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipl" value="PIPL — this idea touches customer PI directly&#xa;&#xa;Inference runs DOMESTICALLY. No cross-border&#xa;escalation for chat content, ever.&#xa;Qwen3.6 self-hosted.&#xa;&#xa;Message archive holds phone numbers, titles,&#xa;customer tags — OpenSCRM&#39;s own docs flag this.&#xa;Encrypt at rest · gate via OPA · log every read.&#xa;&#xa;Certification reviews DEMONSTRABLE controls —&#xa;tokenisation, anonymisation, gated access,&#xa;encryption — not documented ones.&#xa;&#xa;⚠ Minors&#39; data annual audit filing applies if&#xa;the demo category is infant/baby." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="110" width="330" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="six" value="The other five 2026 私域 trends&#xa;&#xa;2 · private domain = default configuration&#xa;3 · restructured brand ↔ distributor&#xa;4 · deep fusion with 即时零售 (→ C03)&#xa;5 · membership deepens: points → tiered growth,&#xa;    exclusive discounts, trials, dividend rights&#xa;6 · fragmented platforms → multi-endpoint&#xa;&#xa;Source: 人人都是产品经理, woshipm.com/operate/6300297" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#999999;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="470" width="330" height="200" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note" value="Human-in-the-loop by default. The agent drafts; the staff member sends. That single choice removes the 标识 disclosure question for one-to-one chat, keeps the liability with a human,&#xa;and produces a free quality metric (draft-acceptance rate and edit distance) that tells you immediately whether the prompts and the retrieval are working." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=12;align=left;spacingLeft=12;verticalAlign=middle;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="720" width="1320" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="wecom" target="scrm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="events" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="scrm" target="agent">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="agent" target="jobs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jobs" target="side">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="jobs" target="pipl">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

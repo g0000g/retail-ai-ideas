@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="W02 Accessibility">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1780" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="W02 — Accessibility remediation copilot: the only plan in six folders with lawsuits already filed" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1400" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="urg" value="WHY THIS IS THE MOST URGENT ITEM&#xa;&#xa;28 Jun 2025   EAA in force across the EU&#xa;Jul 2025      FRANCE issues formal legal notices&#xa;              to major retailers&#xa;Oct 2025      SWEDEN launches market surveillance&#xa;Nov 2025      FIRST EAA LAWSUITS FILED&#xa;              (French Commercial Court)&#xa;ongoing       Dutch ACM actively enforcing&#xa;&#xa;Scope: any business selling online to EU consumers,&#xa;REGARDLESS OF WHERE THE COMPANY IS LOCATED,&#xa;above 10 employees and €2M.&#xa;Standard: EN 301 549 / WCAG 2.1 Level AA minimum.&#xa;Penalties: up to €500,000 plus daily penalties.&#xa;Legacy contracts: comply by 28 Jun 2027." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="400" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="limit" value="THE HONEST LIMIT, STATED FIRST&#xa;&#xa;Automated tools catch roughly A THIRD of WCAG issues.&#xa;&#xa;Keyboard traps · focus order · meaningful alt text ·&#xa;screen-reader flow · error recovery&#xa;→ need MANUAL testing with assistive technology.&#xa;&#xa;So this is a remediation COPILOT, not an auto-fixer.&#xa;It finds, prioritises, drafts and proves the fix.&#xa;A human reviews. A human tests with a screen reader.&#xa;&#xa;The French lawsuits will not be won with a&#xa;Lighthouse score." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="400" height="260" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pipe" value="CI pipeline   (Harness, already live at :3080)" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="490" y="90" width="620" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" value="SCAN — three engines, because they catch different things&#xa;axe-core (Deque, MPL-2.0)   the de-facto WCAG rule engine&#xa;Pa11y (LGPL-3.0)            CI-friendly runner&#xa;Lighthouse (Apache-2.0)     score + regression&#xa;IBM Equal Access (Apache)   second opinion, different rules&#xa;driven through the journeys by Playwright" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="44" width="580" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" value="DEDUPE + MAP to WCAG 2.1 AA criteria and EN 301 549 clauses" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="152" width="580" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" value="PRIORITISE BY JOURNEY, NOT BY COUNT&#xa;checkout &amp;gt; cart &amp;gt; PDP &amp;gt; search &amp;gt; listing &amp;gt; marketing&#xa;an inaccessible checkout is a blocked sale;&#xa;an inaccessible footer is not" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="200" width="580" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" value="COMPONENT ATTRIBUTION — the Angular advantage&#xa;violations cluster in COMPONENTS, not pages.&#xa;Fix one shared &amp;lt;app-form-field&amp;gt; → hundreds of page-level&#xa;violations disappear. Finding the component behind the&#xa;violations is exactly what a model is good at and a scanner is not." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="280" width="580" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="p5" value="AI REMEDIATION DRAFT   (tier 0 local — no customer data involved)&#xa;in:  violating DOM fragment + component source + WCAG criterion&#xa;out: proposed Angular template/TS patch + rationale + criterion&#xa;VALIDATOR: patch parses · component compiles ·&#xa;           re-scan clears it · NO NEW violations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="374" width="580" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="p6" value="DEVELOPER REVIEW — always.   DRAFT PR, NEVER AUTO-MERGE." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="472" width="580" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="p7" value="RE-SCAN in CI → REGRESSION GATE&#xa;a merged PR may not increase violations on the priority journeys" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="pipe">
+          <mxGeometry x="20" y="520" width="580" height="46" as="geometry" />
+        </mxCell>
+
+        <mxCell id="add" value="What the AI adds over a plain scanner" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="90" width="580" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="scanner: a list of DOM violations&#xa;copilot:  THE COMPONENT responsible + the blast radius" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="add">
+          <mxGeometry x="20" y="44" width="540" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="scanner: a WCAG criterion ID&#xa;copilot:  a DRAFTED PATCH in our Angular idiom" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="add">
+          <mxGeometry x="20" y="100" width="540" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="scanner: pass / fail&#xa;copilot:  JOURNEY-WEIGHTED priority — checkout first" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="add">
+          <mxGeometry x="20" y="156" width="540" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="scanner: nothing on alt text&#xa;copilot:  DRAFT ALT TEXT from the product image + I05&#39;s cleaned&#xa;          attributes, for bulk human approval&#xa;          ⚠ NEVER auto-publish — wrong alt text actively misleads&#xa;             a screen-reader user. Worse than none." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="add">
+          <mxGeometry x="20" y="212" width="540" height="76" as="geometry" />
+        </mxCell>
+
+        <mxCell id="out" value="Outputs" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="420" width="580" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="o1" value="ACCESSIBILITY STATEMENT — generated from the current state,&#xa;versioned, published.  The EAA requires one, and it must be TRUTHFUL." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="out">
+          <mxGeometry x="20" y="44" width="540" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="o2" value="MANUAL-TESTING CHECKLIST for the two thirds automation cannot&#xa;catch — with a NAMED OWNER and a SCHEDULE.&#xa;Say out loud that this exists." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="out">
+          <mxGeometry x="20" y="110" width="540" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="o3" value="Bulk alt-text review through the EXISTING SKU audit approval gate&#xa;(N-02 / I05) — no new workflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="out">
+          <mxGeometry x="20" y="182" width="540" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="o4" value="⚠ W04&#39;s consumer DPP passport page must be built accessible&#xa;   FROM DAY ONE — retrofitting is a self-inflicted wound" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="out">
+          <mxGeometry x="20" y="242" width="540" height="26" as="geometry" />
+        </mxCell>
+
+        <mxCell id="foot" value="~13 dev-days — the cheapest plan in this folder, aimed at the only regulation here that has already produced litigation, on a frontend we already own (ecommerce-front-end, Angular SSR).&#xa;Step 1 alone — a baseline scan across the six key journeys — is one day and worth doing regardless of the contest, because it sizes everything else.&#xa;⚠ axe-core is MPL-2.0 (file-level copyleft) and Pa11y is LGPL-3.0. Use them as CI tools; read the licences before vendoring modified files. Both belong in the register." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#999999;fontSize=12;align=left;spacingLeft=12;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="740" width="1700" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="urg" target="limit">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.1;entryDx=0;entryDy=0;" edge="1" parent="1" source="urg" target="pipe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p1" target="p2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p2" target="p3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p3" target="p4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p4" target="p5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p5" target="p6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="p6" target="p7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=2;exitX=1;exitY=0.45;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="pipe" target="add">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="add" target="out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

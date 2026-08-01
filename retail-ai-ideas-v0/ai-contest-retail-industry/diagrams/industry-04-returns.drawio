@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="I04 Returns">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="I04 — Returns prediction &amp;amp; PREVENTION: cause-attributed risk, non-punitive interventions" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="Emarsys #6 &quot;the returns revolution&quot; — $816 billion annual cost of returns.  NOT fraud detection (that is N-10), NOT returns processing.  The return that never happens is worth more than the one handled efficiently." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1500" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="gate" value="PHASE-1 GATE&#xa;&#xa;Audit the after-sales-service RETURN REASON CODES.&#xa;&#xa;If reasons are one free-text field, or 90% &quot;khác&quot;,&#xa;the root-cause half of this plan is not viable yet.&#xa;&#xa;Fixing the taxonomy is a one-day change plus a CS&#xa;conversation. Do that first, then wait for data.&#xa;Ship the risk score + size guidance meanwhile." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="360" height="200" as="geometry" />
+        </mxCell>
+
+        <mxCell id="feat" value="Features — pgpool STANDBY" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="40" y="340" width="360" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" value="order line — category · price · discount depth&#xa;size/variant · first-time buy of this SPU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="feat">
+          <mxGeometry x="15" y="44" width="330" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="customer — return rate 30/90/365d, size history,&#xa;tenure.  AGGREGATES ONLY, never PII to tier 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="feat">
+          <mxGeometry x="15" y="98" width="330" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" value="product — SKU return rate, reason-code mix,&#xa;content completeness (from I05), image count" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="feat">
+          <mxGeometry x="15" y="152" width="330" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" value="logistics — courier, promised vs actual lead time,&#xa;packaging type, distance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="feat">
+          <mxGeometry x="15" y="206" width="330" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" value="context — channel, daypart, promotion, Tet proximity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="feat">
+          <mxGeometry x="15" y="260" width="330" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="model" value="Risk model + root cause" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="460" y="100" width="420" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" value="gradient boosting (XGBoost/LightGBM, CPU)&#xa;→ P(return) per order line&#xa;time-based split, never random — returns are temporal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="model">
+          <mxGeometry x="20" y="44" width="380" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" value="metrics: precision@k on the top-risk decile&#xa;AND CALIBRATION — a 30% prediction must return 30%&#xa;of the time. Calibration is what makes the score usable&#xa;for a finance accrual." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="model">
+          <mxGeometry x="20" y="122" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" value="SHAP → top factors → ROOT-CAUSE CLASS (rules first)&#xa;&#xa;A return probability with no root cause is a number&#xa;nobody can act on. The deliverable is cause-attributed risk." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="model">
+          <mxGeometry x="20" y="210" width="380" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" value="ai_return_risk(orderLineId, p_return, root_cause_class,&#xa;               top_factors[], model_version)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf5e8;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="model">
+          <mxGeometry x="20" y="296" width="380" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="causes" value="Root cause → the action.   THIS TABLE IS THE PLAN." style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#fffdf5;strokeColor=#d6b656;fontStyle=1;fontSize=12;fontColor=#8a6d1e;" vertex="1" parent="1">
+          <mxGeometry x="940" y="100" width="620" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="ca1" value="size / fit wrong          →  size guidance on the PDP&#xa;                              &quot;khách vóc dáng tương tự thường chọn size L&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1;fontFamily=Courier New;" vertex="1" parent="causes">
+          <mxGeometry x="20" y="44" width="580" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="ca2" value="expectation gap           →  flag the listing for a content fix&#xa;(&quot;không giống mô tả&quot;)         → feeds N-02 / I05" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="causes">
+          <mxGeometry x="20" y="96" width="580" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="ca3" value="damaged in transit        →  packaging rule change · courier scorecard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="causes">
+          <mxGeometry x="20" y="148" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ca4" value="late → no longer wanted   →  proactive notification (I07)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="causes">
+          <mxGeometry x="20" y="186" width="580" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ca5" value="wrong item shipped        →  pick verification; often a symptom of&#xa;                              duplicate SKUs → I05" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="causes">
+          <mxGeometry x="20" y="224" width="580" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="ca6" value="bracketing (3 sizes, keep 1) →  size guidance + a gentle nudge, NEVER a block&#xa;buyer&#39;s remorse            →  little to do; measure it so it is not confused&#xa;                              with a fixable cause" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="causes">
+          <mxGeometry x="20" y="276" width="580" height="46" as="geometry" />
+        </mxCell>
+
+        <mxCell id="acts" value="Interventions — every one is additive and non-punitive" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="460" y="480" width="1100" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="PRE-PURCHASE&#xa;size guidance&#xa;on the PDP&#xa;(A/B from day one)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1" vertex="1" parent="acts">
+          <mxGeometry x="20" y="44" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="PRE-SHIP&#xa;pick verification&#xa;packaging upgrade&#xa;for fragile + risky" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="acts">
+          <mxGeometry x="240" y="44" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="POST-SHIP&#xa;proactive check-in&#xa;→ I07" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="acts">
+          <mxGeometry x="460" y="44" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="MERCHANDISING&#xa;SKU content-fix queue&#xa;→ N-02 / I05" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="acts">
+          <mxGeometry x="680" y="44" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="FINANCE&#xa;returns-reserve&#xa;forecast from the&#xa;calibrated model&#xa;(nobody demos this)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="acts">
+          <mxGeometry x="900" y="44" width="180" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="rule" value="DESIGN RULE:  no customer-facing penalty, ever.  Nothing blocks a purchase. Nothing charges a customer.&#xa;The system either gives better information, packs the item better, or fixes a bad listing.&#xa;Feature review excludes anything that proxies for demographics; audit the SHAP factors of the top decile.&#xa;Separate table, separate UI, separate language from the return-ABUSE plan (N-10). They share only the feature pipeline." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;align=left;spacingLeft=10;verticalAlign=middle;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="700" width="1520" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="first" value="Build the size-guidance intervention FIRST:&#xa;largest single return cause, computable from data&#xa;we already have, one sentence on the PDP,&#xa;and a clean A/B. Everything else is phase 2." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=middle;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="840" width="700" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#b85450;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gate" target="feat">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=3;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" edge="1" parent="1" source="feat" target="model">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="model" target="causes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="causes" target="acts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

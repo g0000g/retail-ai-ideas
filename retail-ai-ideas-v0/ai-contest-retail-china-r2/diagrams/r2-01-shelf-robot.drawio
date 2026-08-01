@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="R01 Shelf Robot">
+    <mxGraphModel dx="1800" dy="1000" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="R01 — Shelf-scanning robot: the robot is a camera on wheels. Perception was already planned; this adds mobility." style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1500" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="Simbe economics (third-party): 45,000 sq ft store scanned in &amp;lt;60 min · 98%+ recognition for TRAINED SKUs · 2–3 scans/day vs once weekly manual · $30k–50k/store/year cost vs $80k–300k+ benefit → 2–5× first-year return · needs ~36 in clear aisle · run off-peak." style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="1700" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="robot" value="ROBOT  —  a rented base. Any Nav2-capable AMR, or a vendor unit with an API." style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=12;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="520" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="rb1" value="Cartographer / AMCL on a pre-built store map&#xa;&quot;de facto standard for production AMRs … works well in&#xa;structured indoor environments&quot; — a supermarket aisle is one.&#xa;2D, not 3D: no ramps, no mezzanines in a store." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="robot">
+          <mxGeometry x="20" y="44" width="480" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="rb2" value="Nav2 route following along the scan path&#xa;registered as an RMF fleet (R02) — the scan is a TASK, not a script" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="robot">
+          <mxGeometry x="20" y="126" width="480" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="rb3" value="camera mast — 2–3 cameras, shelf-height coverage&#xa;capture triggered by WAYPOINT, not by timer&#xa;→ position-tagged images are what make the output joinable to a planogram" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="robot">
+          <mxGeometry x="20" y="186" width="480" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="rb4" value="ON-BOX COMPUTE&#xa;RT-DETRv2   → shelf-bay occupancy / gaps            (V04)&#xa;PP-ShiTuV2  → SKU identity per crop, vector retrieval  (C05)&#xa;MiniCPM-V 1.3B → optional VLM verification pass on-box&#xa;   (4×/16× visual token compression — round-2 addition)&#xa;N-of-M verification before publishing anything" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;fontFamily=Courier New;" vertex="1" parent="robot">
+          <mxGeometry x="20" y="260" width="480" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="rb5" value="↓  JSON metadata only.  No video leaves the store." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1" vertex="1" parent="robot">
+          <mxGeometry x="20" y="374" width="480" height="34" as="geometry" />
+        </mxCell>
+
+        <mxCell id="three" value="The three questions, and who answers them" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="620" y="100" width="520" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="t1" value="&quot;Is there a GAP on this shelf?&quot;&#xa;→ V04   RT-DETRv2 + occupancy ROIs   (Apache-2.0 / MIT)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="three">
+          <mxGeometry x="20" y="44" width="480" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="t2" value="&quot;WHICH SKU is this?&quot;&#xa;→ C05   PP-ShiTuV2, vector retrieval, NO retrain for new SKUs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="three">
+          <mxGeometry x="20" y="100" width="480" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="t3" value="&quot;Which SKU SHOULD be here?&quot;&#xa;→ I03   assortment + planogram optimizer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="three">
+          <mxGeometry x="20" y="156" width="480" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="loop" value="R01 adds MOBILITY and nothing else.&#xa;That is why it is only ~3 weeks on top of C05 —&#xa;and why the loop finally closes:&#xa;&#xa;optimizer publishes a planogram&#xa;   → the robot reports what is ACTUALLY there&#xa;      → deviations become tasks" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="620" y="360" width="520" height="170" as="geometry" />
+        </mxCell>
+
+        <mxCell id="out" value="Business integration — where the value is" style="swimlane;startSize=34;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=12;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="100" width="540" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="ou0" value="MQTT (Mosquitto — already the store-device channel)&#xa;→ Kafka, schema registered in Apicurio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="out">
+          <mxGeometry x="20" y="44" width="500" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ou1" value="stock-service&#xa;count vs system stock → reconciliation task with a bay thumbnail" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="out">
+          <mxGeometry x="20" y="100" width="500" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ou2" value="I03 planogram&#xa;compliance deviation → merchandising task" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="out">
+          <mxGeometry x="20" y="160" width="500" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ou3" value="⭐ PROMOTION-ERROR DETECTION — the sleeper feature&#xa;shelf/ESL label price  vs  price-service&#xa;&#xa;Simbe&#39;s ten-year headline is 80M PROMOTION ERRORS FIXED,&#xa;not gaps found. A wrong label is a direct margin leak, it is&#xa;trivially detectable once you can read the label, and NO OTHER&#xa;PLAN IN THE FIVE FOLDERS CATCHES IT." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="out">
+          <mxGeometry x="20" y="220" width="500" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ou4" value="Grafana — availability % · gap-hours per aisle&#xa;scan coverage · promotion errors found" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="out">
+          <mxGeometry x="20" y="346" width="500" height="48" as="geometry" />
+        </mxCell>
+
+        <mxCell id="scope" value="Four scoping decisions that make this shippable&#xa;&#xa;1 · OFF-PEAK ONLY.  ~36 in clear aisle required, and SLAM literature is explicit that&#xa;    &quot;mainstream methods assume static environments&quot; — a trading-hours aisle is worse than a warehouse.&#xa;2 · 2D SLAM, not 3D.  Cartographer/AMCL on a flat floor. FAST-LIO2 earns its keep with ramps; a store has none.&#xa;3 · RENT OR BORROW ONE UNIT.  Do not buy a fleet for a contest. Vendors lend demo units — ask.&#xa;4 · REPORT PRECISION AT THE AUTO-ACCEPT THRESHOLD, not top-1 accuracy. The operating point is the deliverable,&#xa;    with C05&#39;s three-way decision: identified / confirm / unknown — and &quot;unknown&quot; is a valid, correct output." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fffdf5;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=12;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="40" y="570" width="1100" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="risk" value="THE #1 RISK&#xa;&#xa;Catalogue images are studio&#xa;renders on white.&#xa;Shelf images are not.&#xa;&#xa;Measure gallery quality BEFORE&#xa;promising accuracy. Add in-store&#xa;gallery images per SKU — the&#xa;gallery can mix sources.&#xa;&#xa;98%+ is Simbe&#39;s number for&#xa;TRAINED SKUs, not ours." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1200" y="570" width="270" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="first" value="Phase 0 — SIMULATE FIRST (R06)&#xa;&#xa;Route, coverage and scan-time&#xa;estimates come out of the twin.&#xa;&#xa;Rent the robot only AFTER the twin&#xa;says the route works.&#xa;&#xa;Costs zero extra days — R06 already&#xa;models this store." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f3faf1;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=10;verticalAlign=top;spacingTop=8;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1500" y="570" width="240" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="foot" value="Licence position:  PaddleClas Apache-2.0 · PaddleDetection Apache-2.0 · RT-DETRv2 Apache-2.0 · ByteTrack MIT · Cartographer Apache-2.0 (verify) · Open-RMF Apache-2.0.   No AGPL, no non-commercial weights.&#xa;Privacy: products only, no faces, metadata-only egress, signage — the same rules as V04. Bootstrap on SKU-110K / RP2K / Products-10K before collecting a single in-store image." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#999999;fontSize=11;align=left;spacingLeft=12;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="850" width="1700" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="robot" target="three">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="metadata only" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=3;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1" source="three" target="out">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="three" target="loop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

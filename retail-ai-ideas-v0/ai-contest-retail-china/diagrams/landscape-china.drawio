@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="drawio" version="30.3.6">
+  <diagram name="China Solution Landscape">
+    <mxGraphModel dx="1800" dy="1300" grid="10" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1380" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Retail AI Contest — 10 China-market solutions on a fully Chinese open-source stack" style="text;html=1;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="40" y="0" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Qwen3.6 · DeepSeek V4 · GLM-5.1 (Apache-2.0 / MIT) served DOMESTICALLY — PIPL makes local inference the compliance architecture, not a cost optimisation.   🇨🇳 SELL-IN · 📘 PLAYBOOK · 🧰 STACK" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1170" width="1450" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="band1" value="Channels" style="swimlane;horizontal=0;startSize=40;html=1;whiteSpace=wrap;fillColor=#f9f9f9;strokeColor=#999999;fontStyle=1;fontSize=13;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1400" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="抖音小店 / 直播间&#xa;Doudian + livestream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="band1">
+          <mxGeometry x="50" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="企业微信 私域 + 社群&#xa;WeCom private domain" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="band1">
+          <mxGeometry x="380" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="小程序商城 / 门店 POS&#xa;mini-program + store" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="band1">
+          <mxGeometry x="710" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="前置仓 + 门店边缘盒子&#xa;front warehouse + edge box" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="band1">
+          <mxGeometry x="1040" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="band2" value="Edge / BFF" style="swimlane;horizontal=0;startSize=40;html=1;whiteSpace=wrap;fillColor=#f9f9f9;strokeColor=#999999;fontStyle=1;fontSize=13;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="210" width="1400" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="抖店开放平台 API&#xa;⚠ enterprise entity · scoped perms · NO scraping" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="band2">
+          <mxGeometry x="50" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="WxJava SDK (Java)&#xa;+ OpenSCRM / MarketGo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="band2">
+          <mxGeometry x="380" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="ecommerce-bff / pos-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="band2">
+          <mxGeometry x="710" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="MQTT → Kafka bridge&#xa;metadata only" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="band2">
+          <mxGeometry x="1040" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="band3" value="AI Layer  (new)" style="swimlane;horizontal=0;startSize=40;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=13;verticalAlign=middle;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="40" y="380" width="1400" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="[C01] 数字人直播带货  📘&#xa;Duix.Heygem + CosyVoice — 店播 +45% YoY" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="band3">
+          <mxGeometry x="50" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="[C02] 私域运营 agent  🇨🇳&#xa;OpenSCRM + WxJava + Qwen3.6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="band3">
+          <mxGeometry x="380" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="[C05] 商品识别  🧰&#xa;PP-ShiTuV2 — NO retrain for new SKUs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="band3">
+          <mxGeometry x="710" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" value="[C03] 即时零售 / 前置仓  📘&#xa;Chronos-2 + OR-Tools · 3km × 30min" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="band3">
+          <mxGeometry x="1040" y="30" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" value="[C04] 内容中台  🇨🇳&#xa;70% READ / 30% WRITE + 标识" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="band3">
+          <mxGeometry x="50" y="110" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" value="[C07] 中文客服 / 导购  🧰&#xa;RAGFlow DeepDoc + Qwen-Agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="band3">
+          <mxGeometry x="380" y="110" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" value="[C08] 数电票 / 全电发票  🇨🇳&#xa;OFD/XML first — no OCR on the main path" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="band3">
+          <mxGeometry x="710" y="110" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a8" value="[C10] 跨域推荐 + 人群反漏斗  🧰&#xa;EasyRec + RecBole-CDR" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="band3">
+          <mxGeometry x="1040" y="110" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a9" value="[C09] 团长数字分身  📘&#xa;rides on C02 — leader survived, platforms died" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="band3">
+          <mxGeometry x="50" y="190" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a10" value="[C06] 虚拟试穿  🧰&#xa;⚠ CatVTON — IDM-VTON is NON-COMMERCIAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="band3">
+          <mxGeometry x="380" y="190" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a11" value="reuse: I06 decision registry + holdout measurement" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf5e8;strokeColor=#82b366;fontSize=12;dashed=1;" vertex="1" parent="band3">
+          <mxGeometry x="710" y="190" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a12" value="reuse: N-12 OPA action gate + V12 PII scrubber" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf5e8;strokeColor=#82b366;fontSize=12;dashed=1;" vertex="1" parent="band3">
+          <mxGeometry x="1040" y="190" width="300" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="band4" value="Business services  (existing)" style="swimlane;horizontal=0;startSize=40;html=1;whiteSpace=wrap;fillColor=#faf7fc;strokeColor=#9673a6;fontStyle=1;fontSize=13;verticalAlign=middle;fontColor=#6b4c85;" vertex="1" parent="1">
+          <mxGeometry x="40" y="710" width="1400" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="goods-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="50" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="price-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="215" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="stock-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="380" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="order-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="545" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="promotion-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="710" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" value="customer-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="875" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" value="purchase-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="1040" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s8" value="payment-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="1205" y="30" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s9" value="channel-service&#xa;+ 前置仓 as locations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="50" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s10" value="after-sales-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="215" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s11" value="tags-service&#xa;segments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="380" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s12" value="vendor-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="545" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s13" value="workflow-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="710" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s14" value="einvoice-service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band4">
+          <mxGeometry x="875" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s15" value="NEW: 团长 / pickup point&#xa;+ rider model" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1" vertex="1" parent="band4">
+          <mxGeometry x="1040" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="s16" value="core-components&#xa;promotion-engine · opa-interceptor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;dashed=1;" vertex="1" parent="band4">
+          <mxGeometry x="1205" y="90" width="150" height="45" as="geometry" />
+        </mxCell>
+
+        <mxCell id="band5" value="Data &amp;amp; platform  (existing)" style="swimlane;horizontal=0;startSize=40;html=1;whiteSpace=wrap;fillColor=#fffdf5;strokeColor=#d6b656;fontStyle=1;fontSize=13;verticalAlign=middle;fontColor=#8a6d1e;" vertex="1" parent="1">
+          <mxGeometry x="40" y="930" width="1400" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="d1" value="Postgres 16 + pgvector" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;boundedLbl=1;" vertex="1" parent="band5">
+          <mxGeometry x="50" y="34" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d2" value="pgpool&#xa;read standby for all AI reads" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="band5">
+          <mxGeometry x="275" y="34" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d3" value="Elasticsearch 7.17&#xa;⚠ RAGFlow may need its own ES" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;boundedLbl=1;" vertex="1" parent="band5">
+          <mxGeometry x="500" y="34" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d4" value="Redis 7&#xa;precomputed top-N · caches" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;boundedLbl=1;" vertex="1" parent="band5">
+          <mxGeometry x="725" y="34" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d5" value="Kafka + Debezium&#xa;transactional outbox" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="band5">
+          <mxGeometry x="950" y="34" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d6" value="Apicurio&#xa;event schema gate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="band5">
+          <mxGeometry x="1175" y="34" width="180" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d7" value="MinIO&#xa;images · OFD/XML · rendered clips" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;boundedLbl=1;" vertex="1" parent="band5">
+          <mxGeometry x="50" y="104" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d8" value="Mosquitto MQTT&#xa;store device channel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="band5">
+          <mxGeometry x="275" y="104" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d9" value="OPA · Keycloak · OpenBao" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="band5">
+          <mxGeometry x="500" y="104" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d10" value="OTel + LGTM&#xa;audit logging (mandatory 2026/07)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1" vertex="1" parent="band5">
+          <mxGeometry x="725" y="104" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d11" value="ai_decision registry (I06)&#xa;+ 内容ID for 标识办法" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1" vertex="1" parent="band5">
+          <mxGeometry x="950" y="104" width="210" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="d12" value="dim_calendar&#xa;春节 618 双11 双12 国庆" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="band5">
+          <mxGeometry x="1175" y="104" width="180" height="56" as="geometry" />
+        </mxCell>
+
+        <mxCell id="oss" value="Chinese OSS stack — served DOMESTICALLY" style="swimlane;startSize=40;html=1;whiteSpace=wrap;fillColor=#f3faf1;strokeColor=#82b366;fontStyle=1;fontSize=13;fontColor=#3d7a2a;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="40" width="340" height="610" as="geometry" />
+        </mxCell>
+        <mxCell id="o1" value="Qwen3.6 — Apache-2.0&#xa;default chat + tools, 1 consumer GPU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="48" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o2" value="DeepSeek V4 / Flash — MIT&#xa;1M context, cheap long-doc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="100" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o3" value="GLM-5.1 — MIT&#xa;754B MoE, best MIT on SWE-Bench Pro" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="152" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o4" value="Qwen-Agent + RAGFlow — Apache-2.0&#xa;MCP tools · DeepDoc parsing · citations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="204" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o5" value="Fun-ASR-Nano-2512 — Apache-2.0&#xa;+ SenseVoice (Cantonese, emotion)&#xa;+ CosyVoice zero-shot voice clone" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="256" width="310" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o6" value="PP-ShiTuV2 + PaddleDetection — Apache-2.0&#xa;PicoDet targets CPU/mobile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="322" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o7" value="EasyRec / TorchEasyRec — Apache-2.0&#xa;+ RecBole-CDR cross-domain" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="374" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o8" value="WxJava (Java SDK) + OpenSCRM — Apache-2.0&#xa;drops into Spring Boot 4.1 directly" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="oss">
+          <mxGeometry x="15" y="426" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o9" value="Duix.Heygem — 10s avatar clone&#xa;⚠ batch synthesis, NOT real-time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="oss">
+          <mxGeometry x="15" y="478" width="310" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="o10" value="EXCLUDED, with the reason:&#xa;IDM-VTON — CC BY-NC-SA, non-commercial&#xa;MiniMax M3 — restricted, separate licence&#xa;Kimi K3 — agreement above $20M MaaS revenue" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;fontStyle=1" vertex="1" parent="oss">
+          <mxGeometry x="15" y="530" width="310" height="66" as="geometry" />
+        </mxCell>
+
+        <mxCell id="comp" value="Compliance rails — non-optional" style="swimlane;startSize=40;html=1;whiteSpace=wrap;fillColor=#fdf3f3;strokeColor=#b85450;fontStyle=1;fontSize=13;fontColor=#8a3a36;" vertex="1" parent="1">
+          <mxGeometry x="1520" y="690" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="p1" value="标识办法  in force 2025-09-01&#xa;GB 45438—2025 mandatory&#xa;显式标识 badge users can perceive&#xa;隐式标识 metadata: provider code + 内容ID&#xa;deleting / altering labels PROHIBITED&#xa;→ mint at GENERATION, not at publish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="comp">
+          <mxGeometry x="15" y="48" width="310" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" value="PIPL cross-border certification&#xa;issued 2025-10-14, effective 2026-01-01&#xa;GB/T 46068-2025 from 2026-03-01&#xa;more standards mandatory 2026-07-01&#xa;→ customer PI NEVER leaves China&#xa;→ inference domestic. No escalation tier." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;fontStyle=1" vertex="1" parent="comp">
+          <mxGeometry x="15" y="162" width="310" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" value="Platform rules&#xa;抖音 requires an enterprise entity&#xa;scraping prohibited by the agreement&#xa;Alibaba auto-downranks listings 15%+&#xa;below guidance → a HARD pricing constraint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;align=left;spacingLeft=8;verticalAlign=top;spacingTop=6;" vertex="1" parent="comp">
+          <mxGeometry x="15" y="282" width="310" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" value="6 of 7 compliance items are already built by I06." style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#8a3a36;" vertex="1" parent="comp">
+          <mxGeometry x="15" y="384" width="310" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ed1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c1" target="e1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c2" target="e2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c3" target="e3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="c4" target="e4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="e1" target="a1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="e2" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="e3" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="e4" target="a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed9" value="all inference stays in China" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=3;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=11;fontColor=#3d7a2a;" edge="1" parent="1" source="band3" target="oss">
+          <mxGeometry relative="1" x="-0.35" as="geometry">
+            <mxPoint as="offset" x="0" y="-14" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ed10" value="MCP tools · OpenFeign · REST      (every AI action authorized by OPA, fail closed)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=12;fontColor=#6b4c85;" edge="1" parent="1" source="band3" target="band4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ed11" value="JPA · pgpool read standby · transactional outbox to Kafka" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=3;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;fontSize=12;fontColor=#8a6d1e;" edge="1" parent="1" source="band4" target="band5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
