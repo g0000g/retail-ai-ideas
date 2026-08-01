@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🚀 [1/4] Checking NVIDIA Drivers & Docker Toolkit on GB10..."
+echo "🚀 [1/5] Checking NVIDIA Drivers & Docker Toolkit on GB10..."
 if ! command -v nvidia-smi &> /dev/null; then
     echo "❌ Error: NVIDIA Driver is not installed or nvidia-smi failed!"
     exit 1
@@ -18,13 +18,20 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-echo "📦 [2/4] Building and Launching GB10 Docker Stack..."
+echo "📥 [2/5] Checking Model Download Script..."
+if [ -f "./download-models.sh" ]; then
+    chmod +x ./download-models.sh
+    echo "💡 Running pre-download models script..."
+    ./download-models.sh || echo "⚠️ Note: Pre-download skipped or encountered warnings. Containers will auto-download missing models on startup."
+fi
+
+echo "📦 [3/5] Building and Launching GB10 Docker Stack..."
 docker compose up -d --build
 
-echo "⏳ [3/4] Waiting 15 seconds for services to initialize..."
+echo "⏳ [4/5] Waiting 15 seconds for services to initialize..."
 sleep 15
 
-echo "🔍 [4/4] Health Checking Services..."
+echo "🔍 [5/5] Health Checking Services..."
 echo "--- Docker Containers Status ---"
 docker compose ps
 

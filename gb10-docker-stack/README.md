@@ -11,6 +11,7 @@ gb10-docker-stack/
 ├── docker-compose.yml          # Cấu hình 7 Container Microservices tập trung
 ├── .env                        # Biến môi trường hệ thống & HF Token
 ├── setup-gb10.sh               # Script cài đặt & khởi chạy 1-click cho Linux
+├── download-models.sh          # Script tải trước (Pre-pull) các mô hình SOTA về ổ đĩa
 ├── phowhisper-sidecar/         # Service ASR PhoWhisper-large (Python FastAPI + CUDA)
 │   ├── app.py
 │   ├── requirements.txt
@@ -28,6 +29,16 @@ gb10-docker-stack/
 
 ---
 
+## 🤖 CÁC MÔ HÌNH SOTA ĐƯỢC TỰ ĐỘNG TẢI VỀ MÁY CHỦ GB10
+
+Script `download-models.sh` tự động tải 4 mô hình cốt lõi lưu vào thư mục tập trung `/models`:
+1. **`Qwen/Qwen2.5-32B-Instruct`** (Phân tích ngôn ngữ, JSON Schema, Tool calling).
+2. **`vinai/PhoWhisper-large`** (Nhận diện giọng nói tiếng Việt 63 tỉnh thành).
+3. **`amazon/chronos-bolt-small`** (Dự báo lượt khách & doanh số zero-shot).
+4. **`BAAI/bge-m3`** (Trích xuất vector embeddings sản phẩm).
+
+---
+
 ## 🚀 HƯỚNG DẪN CÀI ĐẶT TRÊN MÁY CHỦ GB10 (3 BƯỚC)
 
 ### Bước 1: Sao chép thư mục lên máy chủ GB10
@@ -40,13 +51,14 @@ scp -r gb10-docker-stack testingcopilot@103.108.136.158:~/
 SSH vào máy chủ GB10 và di chuyển vào thư mục:
 ```bash
 cd ~/gb10-docker-stack
-chmod +x setup-gb10.sh
+chmod +x setup-gb10.sh download-models.sh
 ```
 
 ### Bước 3: Chạy script cài đặt 1-click
 ```bash
 ./setup-gb10.sh
 ```
+*(Script sẽ tự động tải trước các mô hình SOTA và kích hoạt toàn bộ 7 container Docker).*
 
 ---
 
@@ -61,24 +73,3 @@ chmod +x setup-gb10.sh
 | **PhoWhisper ASR** | `http://<GB10-IP>:8090` | Service ASR giọng nói tiếng Việt VinAI PhoWhisper-large |
 | **ComfyUI Engine** | `http://<GB10-IP>:8188` | Headless Engine thử đồ ảo CatVTON & Video người ảo LivePortrait |
 | **Milvus Vector DB**| `http://<GB10-IP>:19530` | Cơ sở dữ liệu Vector lưu trữ Embeddings sản phẩm |
-
----
-
-## 🔧 LỆNH QUẢN LÝ DOCKER STACK
-
-* **Xem nhật ký log hệ thống:**
-  ```bash
-  docker compose logs -f
-  ```
-* **Kiểm tra trạng thái các Container:**
-  ```bash
-  docker compose ps
-  ```
-* **Khởi động lại một dịch vụ (ví dụ Backend):**
-  ```bash
-  docker compose restart backend-spring-boot
-  ```
-* **Dừng toàn bộ hệ thống:**
-  ```bash
-  docker compose down
-  ```
